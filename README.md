@@ -31,7 +31,7 @@ The system provides reliable custom-domain email services through a fully server
 
 ## Maintainer
 
-Ziwen Mu  
+Ziwen M.
 University of Manchester  
 Chemistry BSc
 
