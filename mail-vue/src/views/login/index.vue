@@ -140,7 +140,7 @@
         </el-button>
       </div>
     </el-dialog>
-    <a v-show="settingStore.settings.projectLink && !isDesktopApp" class="github" href="https://github.com/Mu-Eddy/ChemVault-Mail">
+    <a v-show="settingStore.settings.projectLink && !isDesktopApp" class="github" href="https://github.com/Eddy-ZM/ChemVault-Mail">
       <Icon icon="mingcute:github-line" color="#1890ff" width="20" height="20" />
     </a>
   </div>
