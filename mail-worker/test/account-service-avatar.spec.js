@@ -1,11 +1,15 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-const { normalize, update, set, where, run } = vi.hoisted(() => ({
+const { normalize, update, set, where, updateRun, prepare, bind, first, alterRun } = vi.hoisted(() => ({
 	normalize: vi.fn(),
 	update: vi.fn(),
 	set: vi.fn(),
 	where: vi.fn(),
-	run: vi.fn()
+	updateRun: vi.fn(),
+	prepare: vi.fn(),
+	bind: vi.fn(),
+	first: vi.fn(),
+	alterRun: vi.fn()
 }));
 
 vi.mock('../src/entity/orm.js', () => ({
@@ -22,12 +26,21 @@ vi.mock('../src/service/account-avatar-service.js', () => ({
 
 describe('account service avatar updates', () => {
 	let accountService;
-	const c = { env: {} };
+	const c = { env: { db: { prepare } } };
 
 	beforeEach(async () => {
 		vi.clearAllMocks();
-		run.mockResolvedValue();
-		where.mockReturnValue({ run });
+		updateRun.mockResolvedValue();
+		alterRun.mockResolvedValue();
+		first.mockResolvedValue({ name: 'avatar_type' });
+		bind.mockReturnValue({ first });
+		prepare.mockImplementation((sql) => {
+			if (sql.startsWith('ALTER TABLE')) {
+				return { run: alterRun };
+			}
+			return { bind };
+		});
+		where.mockReturnValue({ run: updateRun });
 		set.mockReturnValue({ where });
 		update.mockReturnValue({ set });
 		normalize.mockResolvedValue({ avatarType: 'logo', avatar: '' });
@@ -45,7 +58,7 @@ describe('account service avatar updates', () => {
 
 		expect(normalize).toHaveBeenCalledWith(c, params);
 		expect(set).toHaveBeenCalledWith({ avatarType: 'logo', avatar: '' });
-		expect(run).toHaveBeenCalledOnce();
+		expect(updateRun).toHaveBeenCalledOnce();
 		expect(result).toEqual({ avatarType: 'logo', avatar: '' });
 	});
 
@@ -61,7 +74,26 @@ describe('account service avatar updates', () => {
 		}, 7)).rejects.toMatchObject({ name: 'BizError' });
 
 		expect(normalize).not.toHaveBeenCalled();
-		expect(run).not.toHaveBeenCalled();
+		expect(updateRun).not.toHaveBeenCalled();
+	});
+
+	it('adds missing avatar columns before updating avatar settings', async () => {
+		first.mockResolvedValueOnce(null).mockResolvedValueOnce(null);
+		const service = {
+			...accountService,
+			selectById: vi.fn().mockResolvedValue({ accountId: 1, userId: 7 })
+		};
+
+		await service.setAvatar(c, {
+			accountId: 1,
+			avatarType: 'logo'
+		}, 7);
+
+		expect(bind).toHaveBeenCalledWith('avatar_type');
+		expect(bind).toHaveBeenCalledWith('avatar');
+		expect(prepare).toHaveBeenCalledWith(`ALTER TABLE account ADD COLUMN avatar_type TEXT NOT NULL DEFAULT 'initial';`);
+		expect(prepare).toHaveBeenCalledWith(`ALTER TABLE account ADD COLUMN avatar TEXT NOT NULL DEFAULT '';`);
+		expect(alterRun).toHaveBeenCalledTimes(2);
 	});
 
 	it('normalizes and stores avatar settings for a managed user account', async () => {
@@ -76,7 +108,7 @@ describe('account service avatar updates', () => {
 		expect(service.selectById).toHaveBeenCalledWith(c, 2);
 		expect(normalize).toHaveBeenCalledWith(c, params);
 		expect(set).toHaveBeenCalledWith({ avatarType: 'logo', avatar: '' });
-		expect(run).toHaveBeenCalledOnce();
+		expect(updateRun).toHaveBeenCalledOnce();
 		expect(result).toEqual({ avatarType: 'logo', avatar: '' });
 	});
 
@@ -92,6 +124,6 @@ describe('account service avatar updates', () => {
 		})).rejects.toMatchObject({ name: 'BizError' });
 
 		expect(normalize).not.toHaveBeenCalled();
-		expect(run).not.toHaveBeenCalled();
+		expect(updateRun).not.toHaveBeenCalled();
 	});
 });

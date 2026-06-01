@@ -14,6 +14,34 @@ import { t } from '../i18n/i18n';
 import verifyRecordService from './verify-record-service';
 import accountAvatarService from './account-avatar-service';
 
+const accountAvatarColumns = [
+	{
+		name: 'avatar_type',
+		sql: `ALTER TABLE account ADD COLUMN avatar_type TEXT NOT NULL DEFAULT 'initial';`
+	},
+	{
+		name: 'avatar',
+		sql: `ALTER TABLE account ADD COLUMN avatar TEXT NOT NULL DEFAULT '';`
+	}
+];
+
+export async function ensureAccountAvatarColumns(c) {
+	for (const column of accountAvatarColumns) {
+		const columnRow = await c.env.db
+			.prepare(`SELECT * FROM pragma_table_info('account') WHERE name = ? limit 1`)
+			.bind(column.name)
+			.first();
+
+		if (!columnRow) {
+			try {
+				await c.env.db.prepare(column.sql).run();
+			} catch (e) {
+				console.warn(`跳过字段：${e.message}`);
+			}
+		}
+	}
+}
+
 const accountService = {
 
 	async add(c, params, userId) {
@@ -100,11 +128,13 @@ const accountService = {
 		return accountRow;
 	},
 
-	selectByEmailIncludeDel(c, email) {
+	async selectByEmailIncludeDel(c, email) {
+		await ensureAccountAvatarColumns(c);
 		return orm(c).select().from(account).where(sql`${account.email} COLLATE NOCASE = ${email}`).get();
 	},
 
-	list(c, params, userId) {
+	async list(c, params, userId) {
+		await ensureAccountAvatarColumns(c);
 
 		let { accountId, size, lastSort } = params;
 
@@ -162,7 +192,8 @@ const accountService = {
 			.run();
 	},
 
-	selectById(c, accountId) {
+	async selectById(c, accountId) {
+		await ensureAccountAvatarColumns(c);
 		return orm(c).select().from(account).where(
 			and(eq(account.accountId, accountId),
 				eq(account.isDel, isDel.NORMAL)))
@@ -219,6 +250,8 @@ const accountService = {
 	},
 
 	async setAvatar(c, params, userId) {
+		await ensureAccountAvatarColumns(c);
+
 		const { accountId } = params;
 		const accountRow = await this.selectById(c, accountId);
 
@@ -236,6 +269,8 @@ const accountService = {
 	},
 
 	async setManagedAvatar(c, params) {
+		await ensureAccountAvatarColumns(c);
+
 		const { accountId } = params;
 		const accountRow = await this.selectById(c, accountId);
 
@@ -253,6 +288,7 @@ const accountService = {
 	},
 
 	async allAccount(c, params) {
+		await ensureAccountAvatarColumns(c);
 
 		let { userId, num, size } = params
 
