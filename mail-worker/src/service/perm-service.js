@@ -7,8 +7,25 @@ import role from '../entity/role';
 import { permConst } from '../const/entity-const';
 import { t } from '../i18n/i18n'
 
+const avatarPerms = [
+	{ name: '邮箱头像修改', permKey: 'account:set-avatar', pid: 21, type: 2, sort: 3 },
+	{ name: '用户邮箱头像修改', permKey: 'user:set-account-avatar', pid: 6, type: 2, sort: 8 }
+];
+
+export async function ensureAvatarPerms(c) {
+	const promises = avatarPerms.map(item => c.env.db.prepare(`
+		INSERT INTO perm (name, perm_key, pid, type, sort)
+		SELECT ?, ?, ?, ?, ?
+		WHERE NOT EXISTS (SELECT 1 FROM perm WHERE perm_key = ?)
+	`).bind(item.name, item.permKey, item.pid, item.type, item.sort, item.permKey).run());
+
+	await Promise.all(promises);
+}
+
 const permService = {
 	async tree(c) {
+		await ensureAvatarPerms(c);
+
 		const pList = await orm(c).select().from(perm).where(eq(perm.pid, 0)).orderBy(asc(perm.sort)).all();
 		const cList = await orm(c).select().from(perm).where(ne(perm.pid, 0)).orderBy(asc(perm.sort)).all();
 
