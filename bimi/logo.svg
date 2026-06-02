@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny-ps" viewBox="0 0 1024 1024">
+  <title>ChemVault</title>
+  <rect x="0" y="0" width="1024" height="1024" fill="#FFFFFF"/>
+  <polygon points="511,154 206,332 206,692 513,869 815,693 817,618 732,572 730,644 513,769 291,642 292,382 511,255 728,381 815,332" fill="#2E4965"/>
+  <polygon points="814,404 731,453 731,526 816,574" fill="#2E4965"/>
+</svg>
