@@ -48,14 +48,19 @@ final class APIEnvelopeTests: XCTestCase {
         try await client.setAccountAllReceive(accountId: 42)
         try await client.setAccountAsTop(accountId: 42)
         try await client.deleteAccount(accountId: 42)
+        let avatar = try await client.setAccountAvatar(accountId: 42, avatarType: .custom, avatar: "https://img.example/avatar.png")
 
         let requests = AccountRequestURLProtocol.requests
-        XCTAssertEqual(requests.map(\.method), ["PUT", "PUT", "PUT", "DELETE"])
-        XCTAssertEqual(requests.map(\.path), ["/api/account/setName", "/api/account/setAllReceive", "/api/account/setAsTop", "/api/account/delete"])
+        XCTAssertEqual(requests.map(\.method), ["PUT", "PUT", "PUT", "DELETE", "PUT"])
+        XCTAssertEqual(requests.map(\.path), ["/api/account/setName", "/api/account/setAllReceive", "/api/account/setAsTop", "/api/account/delete", "/api/account/setAvatar"])
         XCTAssertEqual(requests[3].query, "accountId=42")
         XCTAssertEqual(requests[0].jsonBody, #"{"accountId":42,"name":"Research Inbox"}"#)
         XCTAssertEqual(requests[1].jsonBody, #"{"accountId":42}"#)
         XCTAssertEqual(requests[2].jsonBody, #"{"accountId":42}"#)
+        XCTAssertEqual(requests[4].jsonValue("accountId") as? Int, 42)
+        XCTAssertEqual(requests[4].jsonValue("avatarType") as? String, "custom")
+        XCTAssertEqual(requests[4].jsonValue("avatar") as? String, "https://img.example/avatar.png")
+        XCTAssertEqual(avatar, AccountAvatarResponse(avatarType: .custom, avatar: "https://img.example/avatar.png"))
     }
 
     private func makeStubbedClient() -> APIClient {
@@ -73,6 +78,11 @@ private struct CapturedAccountRequest {
     var path: String
     var query: String?
     var jsonBody: String?
+    var jsonObject: [String: Any]?
+
+    func jsonValue(_ key: String) -> Any? {
+        jsonObject?[key]
+    }
 }
 
 private final class AccountRequestURLProtocol: URLProtocol {
@@ -91,12 +101,14 @@ private final class AccountRequestURLProtocol: URLProtocol {
     }
 
     override func startLoading() {
+        let jsonData = request.jsonBodyData()
         Self.requests.append(
             CapturedAccountRequest(
                 method: request.httpMethod,
                 path: request.url?.path ?? "",
                 query: request.url?.query,
-                jsonBody: request.normalizedJSONBody()
+                jsonBody: jsonData?.normalizedJSONString(),
+                jsonObject: jsonData?.jsonObject()
             )
         )
         let response = HTTPURLResponse(
@@ -106,7 +118,13 @@ private final class AccountRequestURLProtocol: URLProtocol {
             headerFields: ["Content-Type": "application/json"]
         )!
         client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
-        client?.urlProtocol(self, didLoad: Data(#"{"code":200,"message":"success","data":null}"#.utf8))
+        let body: Data
+        if request.url?.path == "/api/account/setAvatar" {
+            body = Data(#"{"code":200,"message":"success","data":{"avatarType":"custom","avatar":"https://img.example/avatar.png"}}"#.utf8)
+        } else {
+            body = Data(#"{"code":200,"message":"success","data":null}"#.utf8)
+        }
+        client?.urlProtocol(self, didLoad: body)
         client?.urlProtocolDidFinishLoading(self)
     }
 
@@ -114,13 +132,26 @@ private final class AccountRequestURLProtocol: URLProtocol {
 }
 
 private extension URLRequest {
-    func normalizedJSONBody() -> String? {
-        guard let body = httpBody ?? httpBodyStream?.readAllData(),
-              let object = try? JSONSerialization.jsonObject(with: body),
+    func jsonBodyData() -> Data? {
+        httpBody ?? httpBodyStream?.readAllData()
+    }
+}
+
+private extension Data {
+    func normalizedJSONString() -> String? {
+        guard let object = try? JSONSerialization.jsonObject(with: self),
               let normalized = try? JSONSerialization.data(withJSONObject: object, options: [.sortedKeys]) else {
             return nil
         }
         return String(decoding: normalized, as: UTF8.self)
+    }
+
+    func jsonObject() -> [String: Any]? {
+        guard let object = try? JSONSerialization.jsonObject(with: self),
+              let dictionary = object as? [String: Any] else {
+            return nil
+        }
+        return dictionary
     }
 }
 

@@ -268,6 +268,33 @@ struct AccountNameRequest: Encodable {
     var name: String
 }
 
+enum AccountAvatarType: String, Codable, CaseIterable, Identifiable {
+    case initial
+    case logo
+    case custom
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .initial: return "Initial"
+        case .logo: return "Logo"
+        case .custom: return "Custom"
+        }
+    }
+}
+
+struct AccountAvatarRequest: Encodable {
+    var accountId: Int
+    var avatarType: AccountAvatarType
+    var avatar: String
+}
+
+struct AccountAvatarResponse: Codable, Equatable {
+    var avatarType: AccountAvatarType
+    var avatar: String
+}
+
 struct PasswordResetRequest: Encodable {
     var password: String
 }

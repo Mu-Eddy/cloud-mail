@@ -86,6 +86,10 @@ final class APIClient {
         let _: EmptyResponse = try await put("/account/setAsTop", body: AccountIdRequest(accountId: accountId))
     }
 
+    func setAccountAvatar(accountId: Int, avatarType: AccountAvatarType, avatar: String = "") async throws -> AccountAvatarResponse {
+        try await put("/account/setAvatar", body: AccountAvatarRequest(accountId: accountId, avatarType: avatarType, avatar: avatar))
+    }
+
     func deleteAccount(accountId: Int) async throws {
         let _: EmptyResponse = try await delete("/account/delete", query: [URLQueryItem(name: "accountId", value: String(accountId))])
     }
