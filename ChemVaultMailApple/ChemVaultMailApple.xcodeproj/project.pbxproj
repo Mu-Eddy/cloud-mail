@@ -1,0 +1,745 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		016B972145525A1366CD0277 /* AdminRegistrationKeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736FE42078D44FF4F586F0CB /* AdminRegistrationKeysView.swift */; };
+		0C9EB8D96D0E82427D63AA21 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC02398106D22C67E88A63 /* ContentView.swift */; };
+		0EC1A2965794F52E1CC9DB3C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F05DA4F8C674510A76259CF /* SettingsView.swift */; };
+		0EC6BB9768BB1E373FEC369F /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E8B43F8B6C527C0FEC7D36 /* SidebarView.swift */; };
+		0EE30345CE563DEF236AD8E3 /* MailListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A97E0035A2CC9BFCAB7C75 /* MailListView.swift */; };
+		113A338269B864C5BCC8A515 /* HTMLMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CDB733472AD532CA4C32C6 /* HTMLMessageView.swift */; };
+		15ED02CB902FA1918BDE6904 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD23CF669F1C0901B958111 /* AppEnvironment.swift */; };
+		1780957F448F2DC928396485 /* HTMLMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CDB733472AD532CA4C32C6 /* HTMLMessageView.swift */; };
+		22A4C6F4BAF33DE2C6E01068 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E584F6CD8CA01070BDAE722 /* APIError.swift */; };
+		279820E8A4F6AD83301E502F /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B650D81D005727A92F4068 /* AppRoute.swift */; };
+		348D4FAE42B4796A0AA4A8F2 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE571BF24C52729A3635207 /* RegisterView.swift */; };
+		35C65FBC67DF957AE7554FC4 /* AdminRolesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3938FF93C15A08B3D35267 /* AdminRolesView.swift */; };
+		39608AE01C59687B4C22F884 /* AppPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8349A5F5FFBB8A54C080DF77 /* AppPreferences.swift */; };
+		3978AFAB311F0298C2D420D5 /* AdminUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F568441B6D9137E63DFE7E92 /* AdminUsersView.swift */; };
+		3D0DBEC0A03764F595C67AE0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F05DA4F8C674510A76259CF /* SettingsView.swift */; };
+		3D3BB21EB0E87C01B7355F5C /* ChemVaultMailAppleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07FF7DB6EDCFC8A8391E69D /* ChemVaultMailAppleApp.swift */; };
+		3EE57703739F486F22BDB8B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA20076AAA7669583873CED /* Foundation.framework */; };
+		405EBDC594A8F8F00F11C1E1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56157E733850B7DB0B6B0494 /* LoginView.swift */; };
+		4B12E2EAA5C4881F60AAB30A /* SystemSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321F42FA734321351EF5359C /* SystemSettingsView.swift */; };
+		534CA416E3E4DB02BDC96EF4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA20076AAA7669583873CED /* Foundation.framework */; };
+		5A7CB9B3918D9B957300AADF /* MailListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A97E0035A2CC9BFCAB7C75 /* MailListView.swift */; };
+		5A91C8A5CEFFC21BE3A93ECD /* AdminEndpointListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B88BC8B4011E0C91520BDC /* AdminEndpointListView.swift */; };
+		5B0FE51671AD067D3580D0EA /* AccountsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F1CBC635ED655842CD9E47 /* AccountsView.swift */; };
+		603EF26BF1BB5CC6F585C867 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 933A451A38E542970D9D59F4 /* Cocoa.framework */; };
+		62D5FF3A6E3ADEB86253E7BB /* MailDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036A0232C1520C7B53B7DD12 /* MailDetailView.swift */; };
+		630AAF1138DABF3208F9EF48 /* ComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7271E682A1D539A650BABD /* ComposeView.swift */; };
+		6646A8AFA16CA8C8E48F5FEA /* AdminAllMailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A15EB0E8F58630F5588408 /* AdminAllMailView.swift */; };
+		676C7F0D66D40983A27D6CCA /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E8B43F8B6C527C0FEC7D36 /* SidebarView.swift */; };
+		6AFAB71183929BC3196D6839 /* AdminRolesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3938FF93C15A08B3D35267 /* AdminRolesView.swift */; };
+		75C001A01CBC1ED4555F60BD /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD23CF669F1C0901B958111 /* AppEnvironment.swift */; };
+		7E4B70464E877F0540850EA0 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E584F6CD8CA01070BDAE722 /* APIError.swift */; };
+		7EE6C94D81F2FEB83FB0BCDE /* AccountsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F1CBC635ED655842CD9E47 /* AccountsView.swift */; };
+		7F3794F7130BEA825AD08E18 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720C848BBBDE5D58DA205E9 /* AnalyticsView.swift */; };
+		80C16D3145792CF5AC651C50 /* ChemVaultModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D0D10B114AE796C00025B6 /* ChemVaultModels.swift */; };
+		8D9021C9D007A6EFA636401A /* AdminRegistrationKeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736FE42078D44FF4F586F0CB /* AdminRegistrationKeysView.swift */; };
+		910D179DFA269318DA22F71C /* MailStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3864BEB9A994A059B8B835E /* MailStore.swift */; };
+		91818E2A8091BB77EA0140AF /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA10E797F54BFE6EB866A5B /* KeychainTokenStore.swift */; };
+		93C1D35F10094D5E3EB074D0 /* APIEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F788A323D89CA5278351E744 /* APIEnvelopeTests.swift */; };
+		9B5173CE9E94420A22B5AA1E /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA10E797F54BFE6EB866A5B /* KeychainTokenStore.swift */; };
+		9D892457C16FBF36F94D93CB /* ChemVaultMailAppleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07FF7DB6EDCFC8A8391E69D /* ChemVaultMailAppleApp.swift */; };
+		9EB51F3DBBF316C9D46ED139 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE571BF24C52729A3635207 /* RegisterView.swift */; };
+		A8096A43A7EAC0929956BDF7 /* MailStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3864BEB9A994A059B8B835E /* MailStore.swift */; };
+		BE5647F1E54D8C27F0D63EFA /* AppPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8349A5F5FFBB8A54C080DF77 /* AppPreferences.swift */; };
+		C15E5E82FB6D46A01384F208 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24764B129C26B3609FAA9BCF /* APIClient.swift */; };
+		C25D59EB1EE1EF4D543C90F2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56157E733850B7DB0B6B0494 /* LoginView.swift */; };
+		C31E54ADEBA5747222139A4F /* ChemVaultModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D0D10B114AE796C00025B6 /* ChemVaultModels.swift */; };
+		C7C3F350EEBB50F08E6DBCDA /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24764B129C26B3609FAA9BCF /* APIClient.swift */; };
+		C97B08D87C978490654C165E /* AuthSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CF02085A70ED9481D0AF75 /* AuthSession.swift */; };
+		CF8C5061E9491711D649A3AD /* AdminAllMailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A15EB0E8F58630F5588408 /* AdminAllMailView.swift */; };
+		D4DAFDD7DE05EF9D052382FD /* AuthSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CF02085A70ED9481D0AF75 /* AuthSession.swift */; };
+		D690B8B6348F39D8880E14EA /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B650D81D005727A92F4068 /* AppRoute.swift */; };
+		DA0829AC9A2CDBD6CD87BA3D /* MailDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036A0232C1520C7B53B7DD12 /* MailDetailView.swift */; };
+		DC79304FDA20A4F118FCC1E5 /* ComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7271E682A1D539A650BABD /* ComposeView.swift */; };
+		DE2C9449A56BA7E0AD2AD76F /* AdminUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F568441B6D9137E63DFE7E92 /* AdminUsersView.swift */; };
+		E553F0F139E1B979428DCC5A /* AppShellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C7838A555AC3927A41ECA2 /* AppShellView.swift */; };
+		E87C232591A9C66BBF974B55 /* AppShellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C7838A555AC3927A41ECA2 /* AppShellView.swift */; };
+		EB3D2B795AE0A2DD94BE117A /* SystemSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321F42FA734321351EF5359C /* SystemSettingsView.swift */; };
+		EBFB2DDAC1EF9EF210981F37 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC02398106D22C67E88A63 /* ContentView.swift */; };
+		ED7EC9142FE83CB292A828DC /* AdminEndpointListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B88BC8B4011E0C91520BDC /* AdminEndpointListView.swift */; };
+		FD641D9EB0B7F9E9B4FD4533 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720C848BBBDE5D58DA205E9 /* AnalyticsView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		873E7ADD78ACCE1E8AA91AF2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22A3D9D898AA697D02FDA068 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 75A630C6820275534C9D9E97;
+			remoteInfo = ChemVaultMailApple;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		036A0232C1520C7B53B7DD12 /* MailDetailView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MailDetailView.swift; path = Features/Mail/MailDetailView.swift; sourceTree = "<group>"; };
+		08CF02085A70ED9481D0AF75 /* AuthSession.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AuthSession.swift; path = Core/AuthSession.swift; sourceTree = "<group>"; };
+		08E8B43F8B6C527C0FEC7D36 /* SidebarView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SidebarView.swift; path = App/SidebarView.swift; sourceTree = "<group>"; };
+		1FD23CF669F1C0901B958111 /* AppEnvironment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppEnvironment.swift; path = Core/AppEnvironment.swift; sourceTree = "<group>"; };
+		24764B129C26B3609FAA9BCF /* APIClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIClient.swift; path = Core/APIClient.swift; sourceTree = "<group>"; };
+		28C7838A555AC3927A41ECA2 /* AppShellView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppShellView.swift; path = App/AppShellView.swift; sourceTree = "<group>"; };
+		2CA20076AAA7669583873CED /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		321F42FA734321351EF5359C /* SystemSettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SystemSettingsView.swift; path = Features/Settings/SystemSettingsView.swift; sourceTree = "<group>"; };
+		34A97E0035A2CC9BFCAB7C75 /* MailListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MailListView.swift; path = Features/Mail/MailListView.swift; sourceTree = "<group>"; };
+		3A0F754F4EEA1E172A6F94C3 /* ChemVaultMailAppleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChemVaultMailAppleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		44F1CBC635ED655842CD9E47 /* AccountsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AccountsView.swift; path = Features/Accounts/AccountsView.swift; sourceTree = "<group>"; };
+		4E7271E682A1D539A650BABD /* ComposeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ComposeView.swift; path = Features/Mail/ComposeView.swift; sourceTree = "<group>"; };
+		56157E733850B7DB0B6B0494 /* LoginView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoginView.swift; path = Features/Auth/LoginView.swift; sourceTree = "<group>"; };
+		5CA10E797F54BFE6EB866A5B /* KeychainTokenStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeychainTokenStore.swift; path = Core/KeychainTokenStore.swift; sourceTree = "<group>"; };
+		5F05DA4F8C674510A76259CF /* SettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SettingsView.swift; path = Features/Settings/SettingsView.swift; sourceTree = "<group>"; };
+		736FE42078D44FF4F586F0CB /* AdminRegistrationKeysView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AdminRegistrationKeysView.swift; path = Features/Admin/AdminRegistrationKeysView.swift; sourceTree = "<group>"; };
+		73A15EB0E8F58630F5588408 /* AdminAllMailView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AdminAllMailView.swift; path = Features/Admin/AdminAllMailView.swift; sourceTree = "<group>"; };
+		8349A5F5FFBB8A54C080DF77 /* AppPreferences.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppPreferences.swift; path = Core/AppPreferences.swift; sourceTree = "<group>"; };
+		83CDB733472AD532CA4C32C6 /* HTMLMessageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HTMLMessageView.swift; path = Features/Mail/HTMLMessageView.swift; sourceTree = "<group>"; };
+		88D0D10B114AE796C00025B6 /* ChemVaultModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChemVaultModels.swift; path = Models/ChemVaultModels.swift; sourceTree = "<group>"; };
+		8E584F6CD8CA01070BDAE722 /* APIError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIError.swift; path = Core/APIError.swift; sourceTree = "<group>"; };
+		929586AFA58D8A179E87B776 /* ChemVaultMailAppleMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChemVaultMailAppleMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		933A451A38E542970D9D59F4 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		97BC02398106D22C67E88A63 /* ContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = App/ContentView.swift; sourceTree = "<group>"; };
+		A3B650D81D005727A92F4068 /* AppRoute.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppRoute.swift; path = App/AppRoute.swift; sourceTree = "<group>"; };
+		A6B88BC8B4011E0C91520BDC /* AdminEndpointListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AdminEndpointListView.swift; path = Features/Admin/AdminEndpointListView.swift; sourceTree = "<group>"; };
+		AEE571BF24C52729A3635207 /* RegisterView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RegisterView.swift; path = Features/Auth/RegisterView.swift; sourceTree = "<group>"; };
+		D3864BEB9A994A059B8B835E /* MailStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MailStore.swift; path = Features/Mail/MailStore.swift; sourceTree = "<group>"; };
+		E10DDDACBB03949975FC99FC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
+		E720C848BBBDE5D58DA205E9 /* AnalyticsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnalyticsView.swift; path = Features/Analytics/AnalyticsView.swift; sourceTree = "<group>"; };
+		F07FF7DB6EDCFC8A8391E69D /* ChemVaultMailAppleApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChemVaultMailAppleApp.swift; path = App/ChemVaultMailAppleApp.swift; sourceTree = "<group>"; };
+		F568441B6D9137E63DFE7E92 /* AdminUsersView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AdminUsersView.swift; path = Features/Admin/AdminUsersView.swift; sourceTree = "<group>"; };
+		F788A323D89CA5278351E744 /* APIEnvelopeTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = APIEnvelopeTests.swift; sourceTree = "<group>"; };
+		F93C0CA91FAB82FBA85643DB /* ChemVaultMailApple.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChemVaultMailApple.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD3938FF93C15A08B3D35267 /* AdminRolesView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AdminRolesView.swift; path = Features/Admin/AdminRolesView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		94EBC145F474090043232B17 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				534CA416E3E4DB02BDC96EF4 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9FC18BD37DD76F9DF53EB90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EE57703739F486F22BDB8B2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC3954424634706CFB56BF69 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				603EF26BF1BB5CC6F585C867 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05C2A8FDE1A0D5FD091B36C5 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				2CA20076AAA7669583873CED /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		59A015B1517D4F10B26B451E = {
+			isa = PBXGroup;
+			children = (
+				5F854498D150702F451DDF67 /* Products */,
+				7393AE1B4FFBB31C4095A998 /* Frameworks */,
+				8FBF4DC97338392C584FC678 /* ChemVaultMailApple */,
+				A7EFF57917853ECE3B5A3A09 /* ChemVaultMailAppleTests */,
+			);
+			sourceTree = "<group>";
+		};
+		5F854498D150702F451DDF67 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F93C0CA91FAB82FBA85643DB /* ChemVaultMailApple.app */,
+				929586AFA58D8A179E87B776 /* ChemVaultMailAppleMac.app */,
+				3A0F754F4EEA1E172A6F94C3 /* ChemVaultMailAppleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7393AE1B4FFBB31C4095A998 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				05C2A8FDE1A0D5FD091B36C5 /* iOS */,
+				D736EA2D988E483902162239 /* OS X */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8FBF4DC97338392C584FC678 /* ChemVaultMailApple */ = {
+			isa = PBXGroup;
+			children = (
+				A3B650D81D005727A92F4068 /* AppRoute.swift */,
+				28C7838A555AC3927A41ECA2 /* AppShellView.swift */,
+				F07FF7DB6EDCFC8A8391E69D /* ChemVaultMailAppleApp.swift */,
+				97BC02398106D22C67E88A63 /* ContentView.swift */,
+				08E8B43F8B6C527C0FEC7D36 /* SidebarView.swift */,
+				24764B129C26B3609FAA9BCF /* APIClient.swift */,
+				8E584F6CD8CA01070BDAE722 /* APIError.swift */,
+				1FD23CF669F1C0901B958111 /* AppEnvironment.swift */,
+				8349A5F5FFBB8A54C080DF77 /* AppPreferences.swift */,
+				08CF02085A70ED9481D0AF75 /* AuthSession.swift */,
+				5CA10E797F54BFE6EB866A5B /* KeychainTokenStore.swift */,
+				44F1CBC635ED655842CD9E47 /* AccountsView.swift */,
+				73A15EB0E8F58630F5588408 /* AdminAllMailView.swift */,
+				A6B88BC8B4011E0C91520BDC /* AdminEndpointListView.swift */,
+				736FE42078D44FF4F586F0CB /* AdminRegistrationKeysView.swift */,
+				FD3938FF93C15A08B3D35267 /* AdminRolesView.swift */,
+				F568441B6D9137E63DFE7E92 /* AdminUsersView.swift */,
+				E720C848BBBDE5D58DA205E9 /* AnalyticsView.swift */,
+				56157E733850B7DB0B6B0494 /* LoginView.swift */,
+				AEE571BF24C52729A3635207 /* RegisterView.swift */,
+				4E7271E682A1D539A650BABD /* ComposeView.swift */,
+				83CDB733472AD532CA4C32C6 /* HTMLMessageView.swift */,
+				036A0232C1520C7B53B7DD12 /* MailDetailView.swift */,
+				34A97E0035A2CC9BFCAB7C75 /* MailListView.swift */,
+				D3864BEB9A994A059B8B835E /* MailStore.swift */,
+				5F05DA4F8C674510A76259CF /* SettingsView.swift */,
+				321F42FA734321351EF5359C /* SystemSettingsView.swift */,
+				88D0D10B114AE796C00025B6 /* ChemVaultModels.swift */,
+				E10DDDACBB03949975FC99FC /* Info.plist */,
+			);
+			name = ChemVaultMailApple;
+			path = ChemVaultMailApple;
+			sourceTree = "<group>";
+		};
+		A7EFF57917853ECE3B5A3A09 /* ChemVaultMailAppleTests */ = {
+			isa = PBXGroup;
+			children = (
+				F788A323D89CA5278351E744 /* APIEnvelopeTests.swift */,
+			);
+			name = ChemVaultMailAppleTests;
+			path = ChemVaultMailAppleTests;
+			sourceTree = "<group>";
+		};
+		D736EA2D988E483902162239 /* OS X */ = {
+			isa = PBXGroup;
+			children = (
+				933A451A38E542970D9D59F4 /* Cocoa.framework */,
+			);
+			name = "OS X";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		75A630C6820275534C9D9E97 /* ChemVaultMailApple */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 086C72AEDBF807205A47B9E9 /* Build configuration list for PBXNativeTarget "ChemVaultMailApple" */;
+			buildPhases = (
+				89CD2A9E2F0749CBD97CEE99 /* Sources */,
+				94EBC145F474090043232B17 /* Frameworks */,
+				E87B6A23816C7384BCB6CA89 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ChemVaultMailApple;
+			productName = ChemVaultMailApple;
+			productReference = F93C0CA91FAB82FBA85643DB /* ChemVaultMailApple.app */;
+			productType = "com.apple.product-type.application";
+		};
+		92DA1C7336063330DA338400 /* ChemVaultMailAppleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C691383DC3799BAD88911E5 /* Build configuration list for PBXNativeTarget "ChemVaultMailAppleTests" */;
+			buildPhases = (
+				0F14B4283F03F9DA905B2AD6 /* Sources */,
+				D9FC18BD37DD76F9DF53EB90 /* Frameworks */,
+				D334BE2C677ECCC30CFE28DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				555CDB7CD06A8D849967A17B /* PBXTargetDependency */,
+			);
+			name = ChemVaultMailAppleTests;
+			productName = ChemVaultMailAppleTests;
+			productReference = 3A0F754F4EEA1E172A6F94C3 /* ChemVaultMailAppleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B42C8832165C679999667E2D /* ChemVaultMailAppleMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF9FD74DF2A3B4CF99A07480 /* Build configuration list for PBXNativeTarget "ChemVaultMailAppleMac" */;
+			buildPhases = (
+				90E25B755196C7C5C459E2B3 /* Sources */,
+				DC3954424634706CFB56BF69 /* Frameworks */,
+				A459AB3E485111F8C8022315 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ChemVaultMailAppleMac;
+			productName = ChemVaultMailAppleMac;
+			productReference = 929586AFA58D8A179E87B776 /* ChemVaultMailAppleMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		22A3D9D898AA697D02FDA068 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 2640;
+				LastUpgradeCheck = 2640;
+			};
+			buildConfigurationList = 4E1C4CAA070F265D017E4768 /* Build configuration list for PBXProject "ChemVaultMailApple" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 59A015B1517D4F10B26B451E;
+			minimizedProjectReferenceProxies = 0;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 5F854498D150702F451DDF67 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				75A630C6820275534C9D9E97 /* ChemVaultMailApple */,
+				B42C8832165C679999667E2D /* ChemVaultMailAppleMac */,
+				92DA1C7336063330DA338400 /* ChemVaultMailAppleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A459AB3E485111F8C8022315 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D334BE2C677ECCC30CFE28DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E87B6A23816C7384BCB6CA89 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0F14B4283F03F9DA905B2AD6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93C1D35F10094D5E3EB074D0 /* APIEnvelopeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		89CD2A9E2F0749CBD97CEE99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D690B8B6348F39D8880E14EA /* AppRoute.swift in Sources */,
+				E553F0F139E1B979428DCC5A /* AppShellView.swift in Sources */,
+				3D3BB21EB0E87C01B7355F5C /* ChemVaultMailAppleApp.swift in Sources */,
+				0C9EB8D96D0E82427D63AA21 /* ContentView.swift in Sources */,
+				676C7F0D66D40983A27D6CCA /* SidebarView.swift in Sources */,
+				C7C3F350EEBB50F08E6DBCDA /* APIClient.swift in Sources */,
+				7E4B70464E877F0540850EA0 /* APIError.swift in Sources */,
+				75C001A01CBC1ED4555F60BD /* AppEnvironment.swift in Sources */,
+				39608AE01C59687B4C22F884 /* AppPreferences.swift in Sources */,
+				C97B08D87C978490654C165E /* AuthSession.swift in Sources */,
+				91818E2A8091BB77EA0140AF /* KeychainTokenStore.swift in Sources */,
+				5B0FE51671AD067D3580D0EA /* AccountsView.swift in Sources */,
+				6646A8AFA16CA8C8E48F5FEA /* AdminAllMailView.swift in Sources */,
+				5A91C8A5CEFFC21BE3A93ECD /* AdminEndpointListView.swift in Sources */,
+				8D9021C9D007A6EFA636401A /* AdminRegistrationKeysView.swift in Sources */,
+				6AFAB71183929BC3196D6839 /* AdminRolesView.swift in Sources */,
+				3978AFAB311F0298C2D420D5 /* AdminUsersView.swift in Sources */,
+				7F3794F7130BEA825AD08E18 /* AnalyticsView.swift in Sources */,
+				405EBDC594A8F8F00F11C1E1 /* LoginView.swift in Sources */,
+				348D4FAE42B4796A0AA4A8F2 /* RegisterView.swift in Sources */,
+				630AAF1138DABF3208F9EF48 /* ComposeView.swift in Sources */,
+				1780957F448F2DC928396485 /* HTMLMessageView.swift in Sources */,
+				62D5FF3A6E3ADEB86253E7BB /* MailDetailView.swift in Sources */,
+				0EE30345CE563DEF236AD8E3 /* MailListView.swift in Sources */,
+				A8096A43A7EAC0929956BDF7 /* MailStore.swift in Sources */,
+				0EC1A2965794F52E1CC9DB3C /* SettingsView.swift in Sources */,
+				4B12E2EAA5C4881F60AAB30A /* SystemSettingsView.swift in Sources */,
+				80C16D3145792CF5AC651C50 /* ChemVaultModels.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		90E25B755196C7C5C459E2B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				279820E8A4F6AD83301E502F /* AppRoute.swift in Sources */,
+				E87C232591A9C66BBF974B55 /* AppShellView.swift in Sources */,
+				9D892457C16FBF36F94D93CB /* ChemVaultMailAppleApp.swift in Sources */,
+				EBFB2DDAC1EF9EF210981F37 /* ContentView.swift in Sources */,
+				0EC6BB9768BB1E373FEC369F /* SidebarView.swift in Sources */,
+				C15E5E82FB6D46A01384F208 /* APIClient.swift in Sources */,
+				22A4C6F4BAF33DE2C6E01068 /* APIError.swift in Sources */,
+				15ED02CB902FA1918BDE6904 /* AppEnvironment.swift in Sources */,
+				BE5647F1E54D8C27F0D63EFA /* AppPreferences.swift in Sources */,
+				D4DAFDD7DE05EF9D052382FD /* AuthSession.swift in Sources */,
+				9B5173CE9E94420A22B5AA1E /* KeychainTokenStore.swift in Sources */,
+				7EE6C94D81F2FEB83FB0BCDE /* AccountsView.swift in Sources */,
+				CF8C5061E9491711D649A3AD /* AdminAllMailView.swift in Sources */,
+				ED7EC9142FE83CB292A828DC /* AdminEndpointListView.swift in Sources */,
+				016B972145525A1366CD0277 /* AdminRegistrationKeysView.swift in Sources */,
+				35C65FBC67DF957AE7554FC4 /* AdminRolesView.swift in Sources */,
+				DE2C9449A56BA7E0AD2AD76F /* AdminUsersView.swift in Sources */,
+				FD641D9EB0B7F9E9B4FD4533 /* AnalyticsView.swift in Sources */,
+				C25D59EB1EE1EF4D543C90F2 /* LoginView.swift in Sources */,
+				9EB51F3DBBF316C9D46ED139 /* RegisterView.swift in Sources */,
+				DC79304FDA20A4F118FCC1E5 /* ComposeView.swift in Sources */,
+				113A338269B864C5BCC8A515 /* HTMLMessageView.swift in Sources */,
+				DA0829AC9A2CDBD6CD87BA3D /* MailDetailView.swift in Sources */,
+				5A7CB9B3918D9B957300AADF /* MailListView.swift in Sources */,
+				910D179DFA269318DA22F71C /* MailStore.swift in Sources */,
+				3D0DBEC0A03764F595C67AE0 /* SettingsView.swift in Sources */,
+				EB3D2B795AE0A2DD94BE117A /* SystemSettingsView.swift in Sources */,
+				C31E54ADEBA5747222139A4F /* ChemVaultModels.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		555CDB7CD06A8D849967A17B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ChemVaultMailApple;
+			target = 75A630C6820275534C9D9E97 /* ChemVaultMailApple */;
+			targetProxy = 873E7ADD78ACCE1E8AA91AF2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		22DAA3C1B4E00FB6FA9AD0C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = science.chemvault.mail.apple.tests;
+				PRODUCT_MODULE_NAME = ChemVaultMailAppleTests;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChemVault Mail.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ChemVault Mail";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		48D3A538D7CB52E58A794AF0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "ChemVault Mail";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = science.chemvault.mail.mac;
+				PRODUCT_MODULE_NAME = ChemVaultMailApple;
+				PRODUCT_NAME = "ChemVault Mail";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		7F439D5784D7D3DC6D7D6869 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "ChemVault Mail";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = science.chemvault.mail.apple;
+				PRODUCT_MODULE_NAME = ChemVaultMailApple;
+				PRODUCT_NAME = "ChemVault Mail";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		927C0B4A2350674F2E830F33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		BC2D7DA98C6109E7CB223AC3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		C76D0DDA8E1F82E1D62D6770 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "ChemVault Mail";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = science.chemvault.mail.apple;
+				PRODUCT_MODULE_NAME = ChemVaultMailApple;
+				PRODUCT_NAME = "ChemVault Mail";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D998CDD5BC81E92B79F038B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = science.chemvault.mail.apple.tests;
+				PRODUCT_MODULE_NAME = ChemVaultMailAppleTests;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChemVault Mail.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ChemVault Mail";
+			};
+			name = Debug;
+		};
+		E88BE7A9F66A2E0094EAB1FD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "ChemVault Mail";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = science.chemvault.mail.mac;
+				PRODUCT_MODULE_NAME = ChemVaultMailApple;
+				PRODUCT_NAME = "ChemVault Mail";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		086C72AEDBF807205A47B9E9 /* Build configuration list for PBXNativeTarget "ChemVaultMailApple" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C76D0DDA8E1F82E1D62D6770 /* Release */,
+				7F439D5784D7D3DC6D7D6869 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4E1C4CAA070F265D017E4768 /* Build configuration list for PBXProject "ChemVaultMailApple" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC2D7DA98C6109E7CB223AC3 /* Debug */,
+				927C0B4A2350674F2E830F33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C691383DC3799BAD88911E5 /* Build configuration list for PBXNativeTarget "ChemVaultMailAppleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22DAA3C1B4E00FB6FA9AD0C9 /* Release */,
+				D998CDD5BC81E92B79F038B3 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF9FD74DF2A3B4CF99A07480 /* Build configuration list for PBXNativeTarget "ChemVaultMailAppleMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E88BE7A9F66A2E0094EAB1FD /* Release */,
+				48D3A538D7CB52E58A794AF0 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 22A3D9D898AA697D02FDA068 /* Project object */;
+}
