@@ -259,6 +259,15 @@ struct AccountAddRequest: Encodable {
     var token: String?
 }
 
+struct AccountIdRequest: Encodable {
+    var accountId: Int
+}
+
+struct AccountNameRequest: Encodable {
+    var accountId: Int
+    var name: String
+}
+
 struct PasswordResetRequest: Encodable {
     var password: String
 }

@@ -70,6 +70,26 @@ final class APIClient {
         )
     }
 
+    func addAccount(email: String, token: String? = nil) async throws -> ChemVaultAccount {
+        try await post("/account/add", body: AccountAddRequest(email: email, token: token))
+    }
+
+    func setAccountName(accountId: Int, name: String) async throws {
+        let _: EmptyResponse = try await put("/account/setName", body: AccountNameRequest(accountId: accountId, name: name))
+    }
+
+    func setAccountAllReceive(accountId: Int) async throws {
+        let _: EmptyResponse = try await put("/account/setAllReceive", body: AccountIdRequest(accountId: accountId))
+    }
+
+    func setAccountAsTop(accountId: Int) async throws {
+        let _: EmptyResponse = try await put("/account/setAsTop", body: AccountIdRequest(accountId: accountId))
+    }
+
+    func deleteAccount(accountId: Int) async throws {
+        let _: EmptyResponse = try await delete("/account/delete", query: [URLQueryItem(name: "accountId", value: String(accountId))])
+    }
+
     func inbox(accountId: Int = 0, allReceive: Bool = true, emailId: Int = 0, size: Int = 30, type: Int = 0) async throws -> MailListResponse {
         try await get(
             "/email/list",
@@ -210,4 +230,3 @@ extension String {
         return trimmed.isEmpty ? nil : trimmed
     }
 }
-

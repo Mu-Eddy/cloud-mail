@@ -39,5 +39,109 @@ final class APIEnvelopeTests: XCTestCase {
         XCTAssertEqual(request.value(forHTTPHeaderField: "Authorization"), "token-value")
         XCTAssertEqual(request.value(forHTTPHeaderField: "accept-language"), "zh")
     }
+
+    func testBuildsAccountActionRequests() async throws {
+        AccountRequestURLProtocol.reset()
+        let client = makeStubbedClient()
+
+        try await client.setAccountName(accountId: 42, name: "Research Inbox")
+        try await client.setAccountAllReceive(accountId: 42)
+        try await client.setAccountAsTop(accountId: 42)
+        try await client.deleteAccount(accountId: 42)
+
+        let requests = AccountRequestURLProtocol.requests
+        XCTAssertEqual(requests.map(\.method), ["PUT", "PUT", "PUT", "DELETE"])
+        XCTAssertEqual(requests.map(\.path), ["/api/account/setName", "/api/account/setAllReceive", "/api/account/setAsTop", "/api/account/delete"])
+        XCTAssertEqual(requests[3].query, "accountId=42")
+        XCTAssertEqual(requests[0].jsonBody, #"{"accountId":42,"name":"Research Inbox"}"#)
+        XCTAssertEqual(requests[1].jsonBody, #"{"accountId":42}"#)
+        XCTAssertEqual(requests[2].jsonBody, #"{"accountId":42}"#)
+    }
+
+    private func makeStubbedClient() -> APIClient {
+        let defaults = UserDefaults(suiteName: "APIEnvelopeTests-\(UUID().uuidString)")!
+        defaults.set("https://example.com/api", forKey: "chemvault.baseURLString")
+        let preferences = AppPreferences(defaults: defaults)
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [AccountRequestURLProtocol.self]
+        return APIClient(preferences: preferences, session: URLSession(configuration: configuration))
+    }
 }
 
+private struct CapturedAccountRequest {
+    var method: String?
+    var path: String
+    var query: String?
+    var jsonBody: String?
+}
+
+private final class AccountRequestURLProtocol: URLProtocol {
+    nonisolated(unsafe) private(set) static var requests: [CapturedAccountRequest] = []
+
+    static func reset() {
+        requests = []
+    }
+
+    override class func canInit(with request: URLRequest) -> Bool {
+        true
+    }
+
+    override class func canonicalRequest(for request: URLRequest) -> URLRequest {
+        request
+    }
+
+    override func startLoading() {
+        Self.requests.append(
+            CapturedAccountRequest(
+                method: request.httpMethod,
+                path: request.url?.path ?? "",
+                query: request.url?.query,
+                jsonBody: request.normalizedJSONBody()
+            )
+        )
+        let response = HTTPURLResponse(
+            url: request.url!,
+            statusCode: 200,
+            httpVersion: nil,
+            headerFields: ["Content-Type": "application/json"]
+        )!
+        client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
+        client?.urlProtocol(self, didLoad: Data(#"{"code":200,"message":"success","data":null}"#.utf8))
+        client?.urlProtocolDidFinishLoading(self)
+    }
+
+    override func stopLoading() {}
+}
+
+private extension URLRequest {
+    func normalizedJSONBody() -> String? {
+        guard let body = httpBody ?? httpBodyStream?.readAllData(),
+              let object = try? JSONSerialization.jsonObject(with: body),
+              let normalized = try? JSONSerialization.data(withJSONObject: object, options: [.sortedKeys]) else {
+            return nil
+        }
+        return String(decoding: normalized, as: UTF8.self)
+    }
+}
+
+private extension InputStream {
+    func readAllData() -> Data {
+        open()
+        defer { close() }
+
+        let bufferSize = 1_024
+        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: bufferSize)
+        defer { buffer.deallocate() }
+
+        var data = Data()
+        while hasBytesAvailable {
+            let bytesRead = read(buffer, maxLength: bufferSize)
+            if bytesRead > 0 {
+                data.append(buffer, count: bytesRead)
+            } else {
+                break
+            }
+        }
+        return data
+    }
+}
