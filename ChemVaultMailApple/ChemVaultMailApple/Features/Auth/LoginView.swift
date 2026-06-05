@@ -4,6 +4,7 @@ import SwiftUI
 struct LoginView: View {
     @EnvironmentObject private var authSession: AuthSession
     @EnvironmentObject private var preferences: AppPreferences
+    @Environment(\.colorScheme) private var colorScheme
     @State private var email = ""
     @State private var password = ""
     @State private var showingRegister = false
@@ -40,7 +41,7 @@ struct LoginView: View {
             if reduceMotion {
                 hasAppeared = true
             } else {
-                withAnimation(.spring(response: 0.58, dampingFraction: 0.84)) {
+                withAnimation(ChemVaultMotion.entrance) {
                     hasAppeared = true
                 }
             }
@@ -86,25 +87,25 @@ struct LoginView: View {
             .buttonStyle(ChemVaultPrimaryButtonStyle())
             .disabled(isSubmitDisabled)
             .scaleEffect(submitPulse ? 0.985 : 1)
-            .animation(.spring(response: 0.24, dampingFraction: 0.74), value: submitPulse)
-            .animation(.easeInOut(duration: 0.22), value: authSession.state)
+            .animation(ChemVaultMotion.quickPress, value: submitPulse)
+            .animation(ChemVaultMotion.fieldFocus, value: authSession.state)
 
             loginActions
         }
         .padding(.horizontal, 24)
         .padding(.vertical, 28)
         .frame(width: width)
-        .background(.white.opacity(0.9), in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+        .background(ChemVaultTheme.loginCardBackground(for: colorScheme), in: RoundedRectangle(cornerRadius: 8, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 8, style: .continuous)
-                .stroke(.white.opacity(0.82), lineWidth: 1)
+                .stroke(ChemVaultTheme.loginCardStroke(for: colorScheme), lineWidth: 1)
         }
-        .shadow(color: LoginStyle.shadow.opacity(0.18), radius: 28, x: 0, y: 18)
+        .shadow(color: ChemVaultTheme.loginShadow(for: colorScheme), radius: 28, x: 0, y: 18)
         .opacity(hasAppeared ? 1 : 0)
         .offset(y: hasAppeared ? 0 : 18)
         .scaleEffect(hasAppeared ? 1 : 0.985)
-        .animation(reduceMotion ? nil : .spring(response: 0.58, dampingFraction: 0.84), value: hasAppeared)
-        .animation(.easeInOut(duration: 0.2), value: authSession.lastError)
+        .animation(reduceMotion ? nil : ChemVaultMotion.entrance, value: hasAppeared)
+        .animation(ChemVaultMotion.fieldFocus, value: authSession.lastError)
     }
 
     private var loginHeader: some View {
@@ -114,11 +115,11 @@ struct LoginView: View {
 
             Text("ChemVault")
                 .font(.system(size: 31, weight: .semibold))
-                .foregroundStyle(LoginStyle.brandText)
+                .foregroundStyle(ChemVaultTheme.brandText(for: colorScheme))
 
             Text("Sign in to your account to access email")
                 .font(.subheadline)
-                .foregroundStyle(LoginStyle.secondaryText)
+                .foregroundStyle(ChemVaultTheme.secondaryText(for: colorScheme))
                 .multilineTextAlignment(.center)
         }
     }
@@ -143,7 +144,7 @@ struct LoginView: View {
                     } label: {
                         Image(systemName: "xmark.circle.fill")
                             .font(.subheadline)
-                            .foregroundStyle(LoginStyle.mutedText.opacity(0.72))
+                            .foregroundStyle(ChemVaultTheme.mutedText(for: colorScheme).opacity(0.72))
                     }
                     .buttonStyle(.plain)
                     .accessibilityLabel("Clear email")
@@ -152,7 +153,7 @@ struct LoginView: View {
 
                 if shouldShowDomainSuffix {
                     Rectangle()
-                        .fill(LoginStyle.fieldBorder)
+                        .fill(ChemVaultTheme.fieldBorder(for: colorScheme))
                         .frame(width: 1, height: 22)
 
                     Menu {
@@ -171,13 +172,13 @@ struct LoginView: View {
                         HStack(spacing: 7) {
                             Text(selectedDomainSuffix)
                                 .font(.subheadline)
-                                .foregroundStyle(LoginStyle.secondaryText)
+                                .foregroundStyle(ChemVaultTheme.secondaryText(for: colorScheme))
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.74)
 
                             Image(systemName: "chevron.down")
                                 .font(.caption.weight(.semibold))
-                                .foregroundStyle(LoginStyle.mutedText)
+                                .foregroundStyle(ChemVaultTheme.mutedText(for: colorScheme))
                         }
                         .frame(maxWidth: 146, alignment: .trailing)
                     }
@@ -212,7 +213,7 @@ struct LoginView: View {
                 } label: {
                     Image(systemName: isPasswordVisible ? "eye.slash.fill" : "eye.fill")
                         .font(.subheadline)
-                        .foregroundStyle(isPasswordVisible ? ChemVaultLoadingConfiguration.primaryColor : LoginStyle.mutedText)
+                        .foregroundStyle(isPasswordVisible ? ChemVaultLoadingConfiguration.primaryColor(for: colorScheme) : ChemVaultTheme.mutedText(for: colorScheme))
                         .frame(width: 22)
                 }
                 .buttonStyle(.plain)
@@ -257,20 +258,20 @@ struct LoginView: View {
                     .font(.caption.weight(.semibold))
             }
             .font(.caption)
-            .foregroundStyle(LoginStyle.secondaryText)
+            .foregroundStyle(ChemVaultTheme.secondaryText(for: colorScheme))
             .padding(.horizontal, 12)
             .padding(.vertical, 9)
-            .background(.white.opacity(0.72), in: Capsule())
+            .background(ChemVaultTheme.connectionBackground(for: colorScheme), in: Capsule())
             .overlay {
                 Capsule()
-                    .stroke(.white.opacity(0.78), lineWidth: 1)
+                    .stroke(ChemVaultTheme.loginCardStroke(for: colorScheme), lineWidth: 1)
             }
         }
         .buttonStyle(.plain)
         .frame(width: width)
         .opacity(hasAppeared ? 1 : 0)
         .offset(y: hasAppeared ? 0 : 12)
-        .animation(reduceMotion ? nil : .easeOut(duration: 0.42).delay(0.12), value: hasAppeared)
+        .animation(reduceMotion ? nil : ChemVaultMotion.entrance.delay(0.08), value: hasAppeared)
     }
 
     private func errorBanner(_ message: String) -> some View {
@@ -284,21 +285,21 @@ struct LoginView: View {
 
             Spacer(minLength: 0)
         }
-        .foregroundStyle(LoginStyle.errorText)
+        .foregroundStyle(ChemVaultTheme.errorText(for: colorScheme))
         .padding(.horizontal, 12)
         .padding(.vertical, 10)
-        .background(LoginStyle.errorBackground, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+        .background(ChemVaultTheme.errorBackground(for: colorScheme), in: RoundedRectangle(cornerRadius: 8, style: .continuous))
     }
 
     private func submit() {
         focusedField = nil
-        withAnimation(.spring(response: 0.24, dampingFraction: 0.74)) {
+        withAnimation(ChemVaultMotion.quickPress) {
             submitPulse = true
         }
         Task {
             await authSession.login(email: loginEmail, password: password)
             await MainActor.run {
-                withAnimation(.spring(response: 0.24, dampingFraction: 0.74)) {
+                withAnimation(ChemVaultMotion.quickPress) {
                     submitPulse = false
                 }
             }
@@ -341,6 +342,7 @@ enum ChemVaultLoginConfiguration {
 }
 
 private struct ChemVaultLoginField<Content: View>: View {
+    @Environment(\.colorScheme) private var colorScheme
     var label: String
     var systemImage: String
     var isFocused: Bool
@@ -357,24 +359,24 @@ private struct ChemVaultLoginField<Content: View>: View {
         VStack(alignment: .leading, spacing: 7) {
             Text(label)
                 .font(.caption.weight(.semibold))
-                .foregroundStyle(LoginStyle.mutedText)
+                .foregroundStyle(ChemVaultTheme.mutedText(for: colorScheme))
 
             HStack(spacing: 11) {
                 Image(systemName: systemImage)
                     .font(.subheadline)
-                    .foregroundStyle(isFocused ? ChemVaultLoadingConfiguration.primaryColor : LoginStyle.mutedText)
+                    .foregroundStyle(isFocused ? ChemVaultLoadingConfiguration.primaryColor(for: colorScheme) : ChemVaultTheme.mutedText(for: colorScheme))
                     .frame(width: 18)
 
                 content
             }
             .frame(minHeight: 48)
             .padding(.horizontal, 14)
-            .background(.white.opacity(0.96), in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+            .background(ChemVaultTheme.fieldBackground(for: colorScheme), in: RoundedRectangle(cornerRadius: 8, style: .continuous))
             .overlay {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .stroke(isFocused ? ChemVaultLoadingConfiguration.primaryColor.opacity(0.55) : LoginStyle.fieldBorder, lineWidth: 1)
+                    .stroke(isFocused ? ChemVaultLoadingConfiguration.primaryColor(for: colorScheme).opacity(0.55) : ChemVaultTheme.fieldBorder(for: colorScheme), lineWidth: 1)
             }
-            .shadow(color: ChemVaultLoadingConfiguration.primaryColor.opacity(isFocused ? 0.16 : 0), radius: 10, x: 0, y: 5)
+            .shadow(color: ChemVaultLoadingConfiguration.primaryColor(for: colorScheme).opacity(isFocused ? 0.16 : 0), radius: 10, x: 0, y: 5)
             .scaleEffect(isFocused ? 1.01 : 1)
             .animation(.easeInOut(duration: 0.18), value: isFocused)
         }
@@ -383,47 +385,37 @@ private struct ChemVaultLoginField<Content: View>: View {
 
 private struct ChemVaultPrimaryButtonStyle: ButtonStyle {
     @Environment(\.isEnabled) private var isEnabled
+    @Environment(\.colorScheme) private var colorScheme
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .foregroundStyle(.white)
             .background(
                 LinearGradient(
-                    colors: [
-                        ChemVaultLoadingConfiguration.primaryColor,
-                        Color(red: 14 / 255, green: 103 / 255, blue: 188 / 255)
-                    ],
+                    colors: ChemVaultTheme.primaryButtonColors(for: colorScheme),
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
                 .opacity(isEnabled ? (configuration.isPressed ? 0.82 : 1) : 0.54),
                 in: RoundedRectangle(cornerRadius: 8, style: .continuous)
             )
-            .shadow(color: ChemVaultLoadingConfiguration.primaryColor.opacity(configuration.isPressed ? 0.12 : 0.26), radius: 14, x: 0, y: 8)
+            .shadow(color: ChemVaultLoadingConfiguration.primaryColor(for: colorScheme).opacity(configuration.isPressed ? 0.12 : 0.26), radius: 14, x: 0, y: 8)
             .scaleEffect(configuration.isPressed ? 0.985 : 1)
-            .animation(.spring(response: 0.2, dampingFraction: 0.76), value: configuration.isPressed)
-            .animation(.easeInOut(duration: 0.2), value: isEnabled)
+            .animation(ChemVaultMotion.quickPress, value: configuration.isPressed)
+            .animation(ChemVaultMotion.fieldFocus, value: isEnabled)
     }
 }
 
 private struct ChemVaultLinkButtonStyle: ButtonStyle {
+    @Environment(\.colorScheme) private var colorScheme
+
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.footnote.weight(.semibold))
-            .foregroundStyle(configuration.isPressed ? ChemVaultLoadingConfiguration.primaryColor.opacity(0.65) : ChemVaultLoadingConfiguration.primaryColor)
+            .foregroundStyle(configuration.isPressed ? ChemVaultLoadingConfiguration.primaryColor(for: colorScheme).opacity(0.65) : ChemVaultLoadingConfiguration.primaryColor(for: colorScheme))
             .scaleEffect(configuration.isPressed ? 0.96 : 1)
-            .animation(.spring(response: 0.2, dampingFraction: 0.76), value: configuration.isPressed)
+            .animation(ChemVaultMotion.quickPress, value: configuration.isPressed)
     }
-}
-
-private enum LoginStyle {
-    static let brandText = Color(red: 35 / 255, green: 70 / 255, blue: 100 / 255)
-    static let secondaryText = Color(red: 82 / 255, green: 105 / 255, blue: 123 / 255)
-    static let mutedText = Color(red: 114 / 255, green: 132 / 255, blue: 146 / 255)
-    static let fieldBorder = Color(red: 206 / 255, green: 220 / 255, blue: 231 / 255)
-    static let shadow = Color(red: 28 / 255, green: 66 / 255, blue: 94 / 255)
-    static let errorText = Color(red: 156 / 255, green: 48 / 255, blue: 48 / 255)
-    static let errorBackground = Color(red: 255 / 255, green: 240 / 255, blue: 239 / 255)
 }
 
 struct RegisterView: View {

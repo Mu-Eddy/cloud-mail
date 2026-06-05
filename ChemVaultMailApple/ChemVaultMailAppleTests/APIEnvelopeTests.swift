@@ -50,18 +50,18 @@ final class APIEnvelopeTests: XCTestCase {
         XCTAssertEqual(defaults.string(forKey: "chemvault.baseURLString"), "https://mail.chemvault.science/api")
     }
 
-    func testChemVaultLoadingConfigurationMatchesWebsiteSpinner() {
+    func testChemVaultLoadingConfigurationMatchesNativeSweepLoader() {
         XCTAssertEqual(ChemVaultLoadingConfiguration.primaryHex, "#1890FF")
-        XCTAssertEqual(ChemVaultLoadingConfiguration.dotCount, 4)
-        XCTAssertEqual(ChemVaultLoadingConfiguration.rotationDuration, 2)
-        XCTAssertEqual(ChemVaultLoadingConfiguration.pulseDuration, 1)
-        XCTAssertEqual(ChemVaultLoadingConfiguration.minimumPresentationMilliseconds, 650)
+        XCTAssertEqual(ChemVaultLoadingConfiguration.sweepDuration, 1.55)
+        XCTAssertEqual(ChemVaultLoadingConfiguration.breathDuration, 1.9)
+        XCTAssertEqual(ChemVaultLoadingConfiguration.minimumPresentationMilliseconds, 720)
         XCTAssertEqual(ChemVaultLoadingConfiguration.title, "ChemVault Mail")
     }
 
     func testChemVaultBrandAssetsMatchNativeLoginDesign() {
         XCTAssertEqual(ChemVaultBrandAssets.backgroundImageName, "ChemVaultLoginBackground")
         XCTAssertEqual(ChemVaultBrandAssets.logoImageName, "ChemVaultLogo")
+        XCTAssertEqual(ChemVaultBrandAssets.darkLogoImageName, "ChemVaultLogoDark")
         XCTAssertEqual(ChemVaultBrandAssets.loginCardMaxWidth, 430)
         XCTAssertEqual(ChemVaultBrandAssets.loginWatermarkOpacity, 0)
         XCTAssertEqual(ChemVaultBrandAssets.backgroundLockupText, "chemvault.science")

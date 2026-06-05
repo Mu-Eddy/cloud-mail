@@ -12,6 +12,8 @@
 		0213A901C22E4C32818E7597 /* ChemVaultLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0213A8FFC22E4C32818E7597 /* ChemVaultLogo.png */; };
 		0213A902C22E4C32818E7597 /* ChemVaultLoginBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 0213A8FEC22E4C32818E7597 /* ChemVaultLoginBackground.png */; };
 		0213A903C22E4C32818E7597 /* ChemVaultLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0213A8FFC22E4C32818E7597 /* ChemVaultLogo.png */; };
+		0213A904C22E4C32818E7597 /* ChemVaultLogoDark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0213A906C22E4C32818E7597 /* ChemVaultLogoDark.png */; };
+		0213A905C22E4C32818E7597 /* ChemVaultLogoDark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0213A906C22E4C32818E7597 /* ChemVaultLogoDark.png */; };
 		0C9EB8D96D0E82427D63AA21 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BC02398106D22C67E88A63 /* ContentView.swift */; };
 		0EC1A2965794F52E1CC9DB3C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F05DA4F8C674510A76259CF /* SettingsView.swift */; };
 		0EC6BB9768BB1E373FEC369F /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E8B43F8B6C527C0FEC7D36 /* SidebarView.swift */; };
@@ -86,6 +88,7 @@
 /* Begin PBXFileReference section */
 		0213A8FEC22E4C32818E7597 /* ChemVaultLoginBackground.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = ChemVaultLoginBackground.png; path = Resources/ChemVaultLoginBackground.png; sourceTree = "<group>"; };
 		0213A8FFC22E4C32818E7597 /* ChemVaultLogo.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = ChemVaultLogo.png; path = Resources/ChemVaultLogo.png; sourceTree = "<group>"; };
+		0213A906C22E4C32818E7597 /* ChemVaultLogoDark.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = ChemVaultLogoDark.png; path = Resources/ChemVaultLogoDark.png; sourceTree = "<group>"; };
 		036A0232C1520C7B53B7DD12 /* MailDetailView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MailDetailView.swift; path = Features/Mail/MailDetailView.swift; sourceTree = "<group>"; };
 		08CF02085A70ED9481D0AF75 /* AuthSession.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AuthSession.swift; path = Core/AuthSession.swift; sourceTree = "<group>"; };
 		08E8B43F8B6C527C0FEC7D36 /* SidebarView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SidebarView.swift; path = App/SidebarView.swift; sourceTree = "<group>"; };
@@ -222,6 +225,7 @@
 				E10DDDACBB03949975FC99FC /* Info.plist */,
 				0213A8FEC22E4C32818E7597 /* ChemVaultLoginBackground.png */,
 				0213A8FFC22E4C32818E7597 /* ChemVaultLogo.png */,
+				0213A906C22E4C32818E7597 /* ChemVaultLogoDark.png */,
 			);
 			path = ChemVaultMailApple;
 			sourceTree = "<group>";
@@ -345,6 +349,7 @@
 			files = (
 				0213A902C22E4C32818E7597 /* ChemVaultLoginBackground.png in Resources */,
 				0213A903C22E4C32818E7597 /* ChemVaultLogo.png in Resources */,
+				0213A905C22E4C32818E7597 /* ChemVaultLogoDark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +366,7 @@
 			files = (
 				0213A900C22E4C32818E7597 /* ChemVaultLoginBackground.png in Resources */,
 				0213A901C22E4C32818E7597 /* ChemVaultLogo.png in Resources */,
+				0213A904C22E4C32818E7597 /* ChemVaultLogoDark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
