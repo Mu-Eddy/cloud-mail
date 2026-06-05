@@ -59,6 +59,22 @@ final class APIClient {
         try await get("/my/loginUserInfo")
     }
 
+    func setAdminUserStatus(userId: Int, status: Int) async throws {
+        let _: EmptyResponse = try await put("/user/setStatus", body: AdminUserStatusRequest(userId: userId, status: status))
+    }
+
+    func setAdminUserType(userId: Int, type: Int) async throws {
+        let _: EmptyResponse = try await put("/user/setType", body: AdminUserTypeRequest(userId: userId, type: type))
+    }
+
+    func setAdminUserPassword(userId: Int, password: String) async throws {
+        let _: EmptyResponse = try await put("/user/setPwd", body: AdminUserPasswordRequest(userId: userId, password: password))
+    }
+
+    func resetAdminUserSendCount(userId: Int) async throws {
+        let _: EmptyResponse = try await put("/user/resetSendCount", body: UserIdRequest(userId: userId))
+    }
+
     func accounts(size: Int = 30, lastAccountId: Int = 0, lastSort: Int = 9_999_999_999) async throws -> [ChemVaultAccount] {
         try await get(
             "/account/list",

@@ -125,6 +125,25 @@ struct AdminUserRow: Codable, Identifiable, Hashable {
     }
 }
 
+struct UserIdRequest: Encodable {
+    var userId: Int
+}
+
+struct AdminUserStatusRequest: Encodable {
+    var userId: Int
+    var status: Int
+}
+
+struct AdminUserTypeRequest: Encodable {
+    var userId: Int
+    var type: Int
+}
+
+struct AdminUserPasswordRequest: Encodable {
+    var userId: Int
+    var password: String
+}
+
 struct ChemVaultRole: Codable, Identifiable, Hashable {
     var roleId: Int
     var name: String

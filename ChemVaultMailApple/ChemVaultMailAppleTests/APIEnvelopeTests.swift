@@ -73,6 +73,24 @@ final class APIEnvelopeTests: XCTestCase {
         XCTAssertEqual(avatar, AccountAvatarResponse(avatarType: .custom, avatar: "https://img.example/avatar.png"))
     }
 
+    func testBuildsAdminUserActionRequests() async throws {
+        AccountRequestURLProtocol.reset()
+        let client = makeStubbedClient()
+
+        try await client.setAdminUserStatus(userId: 7, status: 1)
+        try await client.setAdminUserType(userId: 7, type: 3)
+        try await client.setAdminUserPassword(userId: 7, password: "new-secret")
+        try await client.resetAdminUserSendCount(userId: 7)
+
+        let requests = AccountRequestURLProtocol.requests
+        XCTAssertEqual(requests.map(\.method), ["PUT", "PUT", "PUT", "PUT"])
+        XCTAssertEqual(requests.map(\.path), ["/api/user/setStatus", "/api/user/setType", "/api/user/setPwd", "/api/user/resetSendCount"])
+        XCTAssertEqual(requests[0].jsonBody, #"{"status":1,"userId":7}"#)
+        XCTAssertEqual(requests[1].jsonBody, #"{"type":3,"userId":7}"#)
+        XCTAssertEqual(requests[2].jsonBody, #"{"password":"new-secret","userId":7}"#)
+        XCTAssertEqual(requests[3].jsonBody, #"{"userId":7}"#)
+    }
+
     private func makeStubbedClient() -> APIClient {
         let defaults = UserDefaults(suiteName: "APIEnvelopeTests-\(UUID().uuidString)")!
         defaults.set("https://example.com/api", forKey: "chemvault.baseURLString")
