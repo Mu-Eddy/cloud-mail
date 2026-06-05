@@ -40,6 +40,16 @@ final class APIEnvelopeTests: XCTestCase {
         XCTAssertEqual(request.value(forHTTPHeaderField: "accept-language"), "zh")
     }
 
+    func testMigratesLegacyProductionBaseURLToAPIPrefix() {
+        let defaults = UserDefaults(suiteName: "APIEnvelopeTests-\(UUID().uuidString)")!
+        defaults.set("https://mail.chemvault.science", forKey: "chemvault.baseURLString")
+
+        let preferences = AppPreferences(defaults: defaults)
+
+        XCTAssertEqual(preferences.baseURLString, "https://mail.chemvault.science/api")
+        XCTAssertEqual(defaults.string(forKey: "chemvault.baseURLString"), "https://mail.chemvault.science/api")
+    }
+
     func testBuildsAccountActionRequests() async throws {
         AccountRequestURLProtocol.reset()
         let client = makeStubbedClient()
