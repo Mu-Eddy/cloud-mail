@@ -50,6 +50,15 @@ final class APIEnvelopeTests: XCTestCase {
         XCTAssertEqual(defaults.string(forKey: "chemvault.baseURLString"), "https://mail.chemvault.science/api")
     }
 
+    func testChemVaultLoadingConfigurationMatchesWebsiteSpinner() {
+        XCTAssertEqual(ChemVaultLoadingConfiguration.primaryHex, "#1890FF")
+        XCTAssertEqual(ChemVaultLoadingConfiguration.dotCount, 4)
+        XCTAssertEqual(ChemVaultLoadingConfiguration.rotationDuration, 2)
+        XCTAssertEqual(ChemVaultLoadingConfiguration.pulseDuration, 1)
+        XCTAssertEqual(ChemVaultLoadingConfiguration.minimumPresentationMilliseconds, 650)
+        XCTAssertEqual(ChemVaultLoadingConfiguration.title, "ChemVault Mail")
+    }
+
     func testBuildsAccountActionRequests() async throws {
         AccountRequestURLProtocol.reset()
         let client = makeStubbedClient()

@@ -33,7 +33,7 @@ struct LoginView: View {
                         submit()
                     } label: {
                         if authSession.state == .checking {
-                            ProgressView()
+                            ChemVaultLoadingButtonLabel(title: "Signing In")
                         } else {
                             Label("Sign In", systemImage: "arrow.right.circle.fill")
                         }
@@ -122,7 +122,7 @@ struct RegisterView: View {
                         submit()
                     } label: {
                         if isSubmitting {
-                            ProgressView()
+                            ChemVaultLoadingButtonLabel(title: "Registering")
                         } else {
                             Label("Register", systemImage: "person.badge.plus")
                         }

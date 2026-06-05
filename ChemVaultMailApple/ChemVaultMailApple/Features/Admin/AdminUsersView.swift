@@ -484,8 +484,7 @@ private struct AdminUsersSummaryCard: View {
             Spacer(minLength: 8)
             AdminStatusChip(title: filter.title, systemImage: filter.systemImage, tone: filter.tone)
             if isLoading {
-                ProgressView()
-                    .controlSize(.small)
+                ChemVaultLoadingMark(size: 16, showsTrack: false)
             }
         }
         .padding(12)
@@ -785,7 +784,7 @@ private struct AdminUserRoleSheet: View {
                         Task { await saveRole() }
                     } label: {
                         if isSaving {
-                            ProgressView()
+                            ChemVaultLoadingMark(size: 16, showsTrack: false)
                         } else {
                             Text("Save")
                         }
@@ -858,7 +857,7 @@ private struct AdminUserPasswordSheet: View {
                         Task { await savePassword() }
                     } label: {
                         if isSaving {
-                            ProgressView()
+                            ChemVaultLoadingMark(size: 16, showsTrack: false)
                         } else {
                             Text("Save")
                         }
@@ -969,7 +968,7 @@ private struct AdminUserAddSheet: View {
                         Task { await saveUser() }
                     } label: {
                         if isSaving {
-                            ProgressView()
+                            ChemVaultLoadingMark(size: 16, showsTrack: false)
                         } else {
                             Text("Add")
                         }
@@ -1027,28 +1026,23 @@ private struct AdminNoticeBanner: View {
 
 private struct AdminLoadingCard: View {
     var body: some View {
-        VStack(spacing: 12) {
-            ProgressView()
-            Text("Loading users...")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-        }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 36)
-        .background(AdminStyle.cardBackground, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+        ChemVaultLoadingView(
+            title: "Users",
+            subtitle: "Loading users...",
+            size: 42,
+            presentation: .card
+        )
     }
 }
 
 private struct AdminBlockingProgressView: View {
     var body: some View {
-        VStack(spacing: 10) {
-            ProgressView()
-            Text("Applying changes")
-                .font(.subheadline)
-        }
-        .padding(18)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
-        .shadow(radius: 16)
+        ChemVaultLoadingView(
+            title: "Applying changes",
+            subtitle: "Syncing with server",
+            size: 36,
+            presentation: .card
+        )
     }
 }
 
