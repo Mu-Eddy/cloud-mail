@@ -91,6 +91,24 @@ final class APIEnvelopeTests: XCTestCase {
         XCTAssertEqual(requests[3].jsonBody, #"{"userId":7}"#)
     }
 
+    func testBuildsAdminUserLifecycleRequests() async throws {
+        AccountRequestURLProtocol.reset()
+        let client = makeStubbedClient()
+
+        try await client.addAdminUser(email: "ada@chemvault.science", password: "secret-1", type: 4)
+        try await client.deleteAdminUsers([7, 8])
+        try await client.restoreAdminUser(userId: 7, restoreRelatedData: false)
+        try await client.restoreAdminUser(userId: 8, restoreRelatedData: true)
+
+        let requests = AccountRequestURLProtocol.requests
+        XCTAssertEqual(requests.map(\.method), ["POST", "DELETE", "PUT", "PUT"])
+        XCTAssertEqual(requests.map(\.path), ["/api/user/add", "/api/user/delete", "/api/user/restore", "/api/user/restore"])
+        XCTAssertEqual(requests[0].jsonBody, #"{"email":"ada@chemvault.science","password":"secret-1","type":4}"#)
+        XCTAssertEqual(requests[1].query, "userIds=7,8")
+        XCTAssertEqual(requests[2].jsonBody, #"{"type":0,"userId":7}"#)
+        XCTAssertEqual(requests[3].jsonBody, #"{"type":1,"userId":8}"#)
+    }
+
     private func makeStubbedClient() -> APIClient {
         let defaults = UserDefaults(suiteName: "APIEnvelopeTests-\(UUID().uuidString)")!
         defaults.set("https://example.com/api", forKey: "chemvault.baseURLString")

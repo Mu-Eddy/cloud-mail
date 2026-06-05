@@ -75,6 +75,21 @@ final class APIClient {
         let _: EmptyResponse = try await put("/user/resetSendCount", body: UserIdRequest(userId: userId))
     }
 
+    func addAdminUser(email: String, password: String, type: Int) async throws {
+        let _: EmptyResponse = try await post("/user/add", body: AdminUserAddRequest(email: email, password: password, type: type))
+    }
+
+    func deleteAdminUsers(_ userIds: [Int]) async throws {
+        guard !userIds.isEmpty else { return }
+        let joined = userIds.map(String.init).joined(separator: ",")
+        let _: EmptyResponse = try await delete("/user/delete", query: [URLQueryItem(name: "userIds", value: joined)])
+    }
+
+    func restoreAdminUser(userId: Int, restoreRelatedData: Bool = false) async throws {
+        let type = restoreRelatedData ? 1 : 0
+        let _: EmptyResponse = try await put("/user/restore", body: AdminUserRestoreRequest(userId: userId, type: type))
+    }
+
     func accounts(size: Int = 30, lastAccountId: Int = 0, lastSort: Int = 9_999_999_999) async throws -> [ChemVaultAccount] {
         try await get(
             "/account/list",

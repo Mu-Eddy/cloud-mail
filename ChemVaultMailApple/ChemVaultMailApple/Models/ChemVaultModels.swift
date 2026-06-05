@@ -94,6 +94,7 @@ struct AdminUserRow: Codable, Identifiable, Hashable {
     var email: String
     var type: Int?
     var status: Int?
+    var isDel: Int?
     var createTime: String?
     var activeTime: String?
     var username: String?
@@ -101,6 +102,7 @@ struct AdminUserRow: Codable, Identifiable, Hashable {
     var avatar: String?
     var receiveEmailCount: Int?
     var sendEmailCount: Int?
+    var sendCount: Int?
     var accountCount: Int?
     var delReceiveEmailCount: Int?
     var delSendEmailCount: Int?
@@ -142,6 +144,17 @@ struct AdminUserTypeRequest: Encodable {
 struct AdminUserPasswordRequest: Encodable {
     var userId: Int
     var password: String
+}
+
+struct AdminUserAddRequest: Encodable {
+    var email: String
+    var password: String
+    var type: Int
+}
+
+struct AdminUserRestoreRequest: Encodable {
+    var userId: Int
+    var type: Int
 }
 
 struct ChemVaultRole: Codable, Identifiable, Hashable {
