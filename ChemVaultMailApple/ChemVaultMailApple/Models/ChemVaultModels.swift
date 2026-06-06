@@ -211,8 +211,13 @@ struct ChemVaultEmail: Codable, Identifiable, Hashable {
     var title: String { subject?.isEmpty == false ? subject! : "(No subject)" }
     var senderLine: String { name?.isEmpty == false ? name! : (sendEmail ?? toEmail ?? "Unknown sender") }
     var previewText: String { text?.isEmpty == false ? text! : (message ?? "") }
-    var isUnread: Bool { unread == 0 || unread == 1 }
+    var isUnread: Bool { unread == ChemVaultEmailReadState.unread }
     var starred: Bool { (isStar ?? 0) != 0 || starId != nil }
+}
+
+enum ChemVaultEmailReadState {
+    static let unread = 0
+    static let read = 1
 }
 
 struct ChemVaultAttachment: Codable, Identifiable, Hashable {

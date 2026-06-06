@@ -107,6 +107,13 @@ struct MailListView: View {
                 }
 
                 Button {
+                    Task { await store.markVisibleUnreadRead(apiClient: appEnvironment.apiClient) }
+                } label: {
+                    Label("Mark All Read", systemImage: "envelope.open")
+                }
+                .disabled(visibleUnreadCount == 0 || store.isLoading)
+
+                Button {
                     showingCompose = true
                 } label: {
                     Label("Compose", systemImage: "square.and.pencil")
@@ -118,6 +125,10 @@ struct MailListView: View {
         }
         .animation(reduceMotion ? nil : ChemVaultMotion.rootContent, value: store.emails)
         .animation(reduceMotion ? nil : ChemVaultMotion.fieldFocus, value: store.isLoading)
+    }
+
+    private var visibleUnreadCount: Int {
+        store.emails.filter(\.isUnread).count
     }
 
     @ViewBuilder
@@ -158,8 +169,10 @@ struct MailListView: View {
 
     @ViewBuilder
     private func compactRowActions(for email: ChemVaultEmail) -> some View {
-        Button("Mark Read") {
-            Task { await store.markRead(email: email, apiClient: appEnvironment.apiClient) }
+        if email.isUnread {
+            Button("Mark Read") {
+                Task { await store.markRead(email: email, apiClient: appEnvironment.apiClient) }
+            }
         }
         Button(email.starred ? "Unstar" : "Star") {
             Task { await store.toggleStar(email: email, apiClient: appEnvironment.apiClient) }

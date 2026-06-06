@@ -64,12 +64,18 @@ struct MailDetailView: View {
                 Button(action: markRead) {
                     Label("Read", systemImage: "envelope.open")
                 }
+                .disabled(!email.isUnread)
                 Button(action: toggleStar) {
                     Label(email.starred ? "Unstar" : "Star", systemImage: email.starred ? "star.slash" : "star")
                 }
                 Button(role: .destructive, action: delete) {
                     Label("Delete", systemImage: "trash")
                 }
+            }
+        }
+        .task(id: email.emailId) {
+            if email.isUnread {
+                markRead()
             }
         }
     }
@@ -95,4 +101,3 @@ struct AttachmentRowView: View {
         .padding(.vertical, 6)
     }
 }
-

@@ -68,9 +68,21 @@ final class MailStore: ObservableObject {
     }
 
     func markRead(email: ChemVaultEmail, apiClient: APIClient) async {
+        await markRead(emailIds: [email.emailId], apiClient: apiClient)
+    }
+
+    func markVisibleUnreadRead(apiClient: APIClient) async {
+        let emailIds = emails.filter(\.isUnread).map(\.emailId)
+        guard !emailIds.isEmpty else { return }
+        await markRead(emailIds: emailIds, apiClient: apiClient)
+    }
+
+    private func markRead(emailIds: [Int], apiClient: APIClient) async {
         do {
-            try await apiClient.markRead(emailIds: [email.emailId])
-            update(emailId: email.emailId) { $0.unread = 1 }
+            try await apiClient.markRead(emailIds: emailIds)
+            emailIds.forEach { emailId in
+                update(emailId: emailId) { $0.unread = ChemVaultEmailReadState.read }
+            }
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -107,6 +119,10 @@ final class MailStore: ObservableObject {
         mutate(&emails[index])
         if selectedEmail?.emailId == emailId {
             selectedEmail = emails[index]
+        }
+        if var latestEmail, latestEmail.emailId == emailId {
+            mutate(&latestEmail)
+            self.latestEmail = latestEmail
         }
     }
 }

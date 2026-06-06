@@ -80,6 +80,52 @@ final class APIEnvelopeTests: XCTestCase {
         XCTAssertEqual(ChemVaultLoginConfiguration.domainSuffixes, ["@chemvault.science", "@mail.chemvault.science"])
     }
 
+    func testChemVaultEmailReadStateMatchesWebsiteUnreadEnum() throws {
+        let unreadEmail = try decodeEmail(#"{"emailId":1,"unread":0}"#)
+        let readEmail = try decodeEmail(#"{"emailId":2,"unread":1}"#)
+        let missingStateEmail = try decodeEmail(#"{"emailId":3}"#)
+
+        XCTAssertTrue(unreadEmail.isUnread)
+        XCTAssertFalse(readEmail.isUnread)
+        XCTAssertFalse(missingStateEmail.isUnread)
+    }
+
+    func testMailStoreMarksSingleEmailReadLocally() async throws {
+        AccountRequestURLProtocol.reset()
+        let client = makeStubbedClient()
+        let unreadEmail = try decodeEmail(#"{"emailId":7,"unread":0,"subject":"Unread message"}"#)
+        let store = MailStore()
+        store.emails = [unreadEmail]
+        store.selectedEmail = unreadEmail
+
+        await store.markRead(email: unreadEmail, apiClient: client)
+
+        XCTAssertEqual(AccountRequestURLProtocol.requests.last?.path, "/api/email/read")
+        XCTAssertEqual(AccountRequestURLProtocol.requests.last?.jsonBody, #"{"emailIds":[7]}"#)
+        XCTAssertFalse(store.emails[0].isUnread)
+        XCTAssertFalse(store.selectedEmail?.isUnread ?? true)
+    }
+
+    func testMailStoreMarksVisibleUnreadEmailsReadLocally() async throws {
+        AccountRequestURLProtocol.reset()
+        let client = makeStubbedClient()
+        let unreadA = try decodeEmail(#"{"emailId":8,"unread":0}"#)
+        let read = try decodeEmail(#"{"emailId":9,"unread":1}"#)
+        let unreadB = try decodeEmail(#"{"emailId":10,"unread":0}"#)
+        let store = MailStore()
+        store.emails = [unreadA, read, unreadB]
+        store.latestEmail = unreadA
+        store.selectedEmail = unreadA
+
+        await store.markVisibleUnreadRead(apiClient: client)
+
+        XCTAssertEqual(AccountRequestURLProtocol.requests.last?.path, "/api/email/read")
+        XCTAssertEqual(AccountRequestURLProtocol.requests.last?.jsonBody, #"{"emailIds":[8,10]}"#)
+        XCTAssertEqual(store.emails.filter(\.isUnread).count, 0)
+        XCTAssertFalse(store.latestEmail?.isUnread ?? true)
+        XCTAssertFalse(store.selectedEmail?.isUnread ?? true)
+    }
+
     func testBuildsAccountActionRequests() async throws {
         AccountRequestURLProtocol.reset()
         let client = makeStubbedClient()
@@ -146,6 +192,10 @@ final class APIEnvelopeTests: XCTestCase {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [AccountRequestURLProtocol.self]
         return APIClient(preferences: preferences, session: URLSession(configuration: configuration))
+    }
+
+    private func decodeEmail(_ json: String) throws -> ChemVaultEmail {
+        try JSONDecoder.chemVault.decode(ChemVaultEmail.self, from: Data(json.utf8))
     }
 }
 
