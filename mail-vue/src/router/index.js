@@ -127,19 +127,29 @@ function loadBackground(next) {
 
         const img = new Image();
         img.src = src;
+        let settled = false;
+        let timeoutId;
 
-        img.onload = () => {
-            next()
+        const finish = (warning) => {
+            if (settled) {
+                return;
+            }
+            settled = true;
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
+            if (warning) {
+                console.warn(warning);
+            }
+            next();
         };
 
-        img.onerror = () => {
-            console.warn("背景图片加载失败:", img.src);
-            next()
-        };
+        img.onload = () => finish();
 
-        setTimeout(() => {
-            console.warn("背景加载超时，已放行");
-            next()
+        img.onerror = () => finish(`背景图片加载失败: ${img.src}`);
+
+        timeoutId = setTimeout(() => {
+            finish("背景加载超时，已放行");
         }, 3000)
 
     } else {

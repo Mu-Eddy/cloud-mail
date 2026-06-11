@@ -15,7 +15,7 @@
         <span class="form-desc" v-else>{{ $t('regTitle') }}</span>
         <div v-show="show === 'login'">
           <el-input :class="!hideLoginDomain ? 'email-input' : ''" v-model="form.email"
-                    type="text" :placeholder="$t('emailAccount')" autocomplete="off">
+                    type="text" :placeholder="$t('emailAccount')" :aria-label="$t('emailAccount')" autocomplete="username">
             <template #append v-if="!hideLoginDomain">
               <div @click.stop="openSelect">
                 <el-select
@@ -23,6 +23,7 @@
                     ref="mySelect"
                     v-model="suffix"
                     :placeholder="$t('select')"
+                    :aria-label="$t('emailDomain')"
                     class="select"
                 >
                   <el-option
@@ -39,7 +40,7 @@
               </div>
             </template>
           </el-input>
-          <el-input v-model="form.password" :placeholder="$t('password')" type="password" autocomplete="off">
+          <el-input v-model="form.password" :placeholder="$t('password')" :aria-label="$t('password')" type="password" autocomplete="current-password">
           </el-input>
           <el-button class="btn" type="primary" @click="submit" :loading="loginLoading"
           >{{ $t('loginBtn') }}
@@ -50,7 +51,7 @@
         </div>
         <div v-show="show !== 'login'">
           <el-input :class="!hideLoginDomain ? 'email-input' : ''" v-model="registerForm.email" type="text" :placeholder="$t('emailAccount')"
-                    autocomplete="off">
+                    :aria-label="$t('emailAccount')" autocomplete="username">
             <template #append v-if="!hideLoginDomain">
               <div @click.stop="openSelect">
                 <el-select
@@ -58,6 +59,7 @@
                     ref="mySelect"
                     v-model="suffix"
                     :placeholder="$t('select')"
+                    :aria-label="$t('emailDomain')"
                     class="select"
                 >
                   <el-option
@@ -74,13 +76,13 @@
               </div>
             </template>
           </el-input>
-          <el-input v-model="registerForm.password" :placeholder="$t('password')" type="password" autocomplete="off"/>
-          <el-input v-model="registerForm.confirmPassword" :placeholder="$t('confirmPwd')" type="password"
-                    autocomplete="off"/>
-          <el-input v-if="settingStore.settings.regKey === 0" v-model="registerForm.code" :placeholder="$t('regKey')"
-                    type="text" autocomplete="off"/>
+          <el-input v-model="registerForm.password" :placeholder="$t('password')" :aria-label="$t('password')" type="password" autocomplete="new-password"/>
+          <el-input v-model="registerForm.confirmPassword" :placeholder="$t('confirmPwd')" :aria-label="$t('confirmPwd')" type="password"
+                    autocomplete="new-password"/>
+          <el-input v-if="settingStore.settings.regKey === 0" v-model="registerForm.code" :placeholder="$t('regKey')" :aria-label="$t('regKey')"
+                    type="text" autocomplete="one-time-code"/>
           <el-input v-if="settingStore.settings.regKey === 2" v-model="registerForm.code"
-                    :placeholder="$t('regKeyOptional')" type="text" autocomplete="off"/>
+                    :placeholder="$t('regKeyOptional')" :aria-label="$t('regKeyOptional')" type="text" autocomplete="one-time-code"/>
           <div v-show="verifyShow"
                class="register-turnstile"
                :data-sitekey="settingStore.settings.siteKey"
@@ -108,13 +110,14 @@
     </div>
     <el-dialog class="bind-dialog" v-model="showBindForm"  title="注册邮箱" >
       <div class="bind-container">
-        <el-input :class="!hideLoginDomain ? 'email-input' : ''" v-model="bindForm.email" type="text" :placeholder="$t('emailAccount')" autocomplete="off">
+        <el-input :class="!hideLoginDomain ? 'email-input' : ''" v-model="bindForm.email" type="text" :placeholder="$t('emailAccount')" :aria-label="$t('emailAccount')" autocomplete="username">
           <template #append v-if="!hideLoginDomain">
             <div @click.stop="openSelect">
               <el-select
                   ref="mySelect"
                   v-model="suffix"
                   :placeholder="$t('select')"
+                  :aria-label="$t('emailDomain')"
                   class="select"
               >
                 <el-option
@@ -131,16 +134,16 @@
             </div>
           </template>
         </el-input>
-        <el-input v-if="settingStore.settings.regKey === 0" v-model="bindForm.code" :placeholder="$t('regKey')"
-                  type="text" autocomplete="off"/>
+        <el-input v-if="settingStore.settings.regKey === 0" v-model="bindForm.code" :placeholder="$t('regKey')" :aria-label="$t('regKey')"
+                  type="text" autocomplete="one-time-code"/>
         <el-input v-if="settingStore.settings.regKey === 2" v-model="bindForm.code"
-                  :placeholder="$t('regKeyOptional')" type="text" autocomplete="off"/>
+                  :placeholder="$t('regKeyOptional')" :aria-label="$t('regKeyOptional')" type="text" autocomplete="one-time-code"/>
         <el-button class="btn" type="primary" @click="bind" :loading="bindLoading"
         >绑定
         </el-button>
       </div>
     </el-dialog>
-    <a v-show="settingStore.settings.projectLink && !isDesktopApp" class="github" href="https://github.com/Eddy-ZM/ChemVault-Mail">
+    <a v-show="settingStore.settings.projectLink && !isDesktopApp" class="github" href="https://github.com/Eddy-ZM/ChemVault-Mail" aria-label="GitHub" title="GitHub" target="_blank" rel="noopener noreferrer">
       <Icon icon="mingcute:github-line" color="#1890ff" width="20" height="20" />
     </a>
   </div>
@@ -226,13 +229,9 @@ window.onTurnstileError = (e) => {
   }, 1500)
 };
 
-window.loadAfter = (e) => {
-  console.log('loadAfter')
-}
+window.loadAfter = () => {}
 
-window.loadBefore = (e) => {
-  console.log('loadBefore')
-}
+window.loadBefore = () => {}
 
 const loginOpacity = computed(() => {
   const opacity = settingStore.settings.loginOpacity
@@ -455,8 +454,6 @@ function submitRegister() {
     return
   }
 
-  console.log(registerForm.email)
-
   if (getEmailName(registerForm.email).length < settingStore.settings.minEmailPrefix) {
     ElMessage({
       message: t('minEmailPrefix', {msg: settingStore.settings.minEmailPrefix}),
@@ -528,7 +525,7 @@ function submitRegister() {
             turnstileId = window.turnstile.render('.register-turnstile')
           } catch (e) {
             botJsError.value = true
-            console.log('人机验证js加载失败')
+            console.warn('人机验证js加载失败')
           }
         } else {
           window.turnstile.reset('.register-turnstile')

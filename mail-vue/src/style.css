@@ -55,8 +55,10 @@ button, input, select, textarea {
     background: none;
 }
 
-*:focus {
-    outline: none;
+:where(a, button, input, textarea, select, [role="button"], [tabindex]):focus-visible {
+    outline: 2px solid var(--el-color-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
 }
 
 .el-message {

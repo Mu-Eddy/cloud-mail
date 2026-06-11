@@ -11,19 +11,46 @@
       <div class="header-left" :style="'padding-left:' + actionLeft">
 
         <slot name="first"></slot>
-        <Icon class="icon reload" icon="ion:reload" width="18" height="18" @click="refresh"/>
-        <Icon v-perm="'email:delete'" class="icon delete" icon="uiw:delete" width="16" height="16"
-              v-if="getSelectedMailsIds().length > 0"
-              @click="handleDelete"/>
-        <Icon v-perm="'email:delete'" class="icon delete" icon="fluent:mail-read-20-regular" width="21" height="21"
-              v-if="getSelectedMailsIds().length > 0 && showUnread"
-              @click="handleRead"/>
+        <el-tooltip effect="dark" :content="$t('refresh')">
+          <Icon class="icon reload" icon="ion:reload" width="18" height="18"
+                role="button"
+                tabindex="0"
+                :aria-label="$t('refresh')"
+                @click="refresh"
+                @keydown.enter.prevent="refresh"
+                @keydown.space.prevent="refresh"/>
+        </el-tooltip>
+        <el-tooltip v-if="getSelectedMailsIds().length > 0" v-perm="'email:delete'" effect="dark" :content="$t('delete')">
+          <Icon class="icon delete" icon="uiw:delete" width="16" height="16"
+                role="button"
+                tabindex="0"
+                :aria-label="$t('delete')"
+                @click="handleDelete"
+                @keydown.enter.prevent="handleDelete"
+                @keydown.space.prevent="handleDelete"/>
+        </el-tooltip>
+        <el-tooltip v-if="getSelectedMailsIds().length > 0 && showUnread" v-perm="'email:delete'" effect="dark" :content="$t('markAsRead')">
+          <Icon class="icon delete" icon="fluent:mail-read-20-regular" width="21" height="21"
+                role="button"
+                tabindex="0"
+                :aria-label="$t('markAsRead')"
+                @click="handleRead"
+                @keydown.enter.prevent="handleRead"
+                @keydown.space.prevent="handleRead"/>
+        </el-tooltip>
       </div>
 
       <div class="header-right">
         <span class="email-count" v-if="total">{{ $t('emailCount', {total: total}) }}</span>
-        <Icon v-if="showAccountIcon" class="more-icon icon" width="16" height="16" icon="akar-icons:dot-grid-fill"
-              @click="changeAccountShow"/>
+        <el-tooltip v-if="showAccountIcon" effect="dark" :content="$t('showAccounts')">
+          <Icon class="more-icon icon" width="16" height="16" icon="akar-icons:dot-grid-fill"
+                role="button"
+                tabindex="0"
+                :aria-label="$t('showAccounts')"
+                @click="changeAccountShow"
+                @keydown.enter.prevent="changeAccountShow"
+                @keydown.space.prevent="changeAccountShow"/>
+        </el-tooltip>
       </div>
     </div>
 

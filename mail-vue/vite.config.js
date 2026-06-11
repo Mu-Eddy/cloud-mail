@@ -55,7 +55,32 @@ export default defineConfig(({mode}) => {
             target: 'es2022',
             outDir: env.VITE_OUT_DIR || 'dist',
             emptyOutDir: true,
-            assetsInclude: ['**/*.json']
+            assetsInclude: ['**/*.json'],
+            rollupOptions: {
+                output: {
+                    manualChunks(id) {
+                        if (!id.includes('node_modules')) {
+                            return;
+                        }
+                        if (id.includes('/vue') || id.includes('/pinia') || id.includes('/vue-router') || id.includes('/vue-i18n')) {
+                            return 'vendor-vue';
+                        }
+                        if (id.includes('/element-plus')) {
+                            return 'vendor-element';
+                        }
+                        if (id.includes('/zrender')) {
+                            return 'vendor-zrender';
+                        }
+                        if (id.includes('/echarts')) {
+                            return 'vendor-echarts';
+                        }
+                        if (id.includes('/tinymce')) {
+                            return 'vendor-tinymce';
+                        }
+                        return 'vendor';
+                    }
+                }
+            }
         }
     }
 })
