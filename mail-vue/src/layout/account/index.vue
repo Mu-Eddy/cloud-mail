@@ -1,8 +1,24 @@
 <template>
   <div class="account-box">
     <div class="head-opt">
-      <Icon v-perm="'account:add'" class="icon add" icon="ion:add-outline" width="23" height="23" @click="add"/>
-      <Icon class="icon refresh" icon="ion:reload" width="18" height="18" @click="refresh"/>
+      <el-tooltip v-if="hasPerm('account:add')" effect="dark" :content="$t('addAccount')">
+        <Icon class="icon add" icon="ion:add-outline" width="23" height="23"
+              role="button"
+              tabindex="0"
+              :aria-label="$t('addAccount')"
+              @click="add"
+              @keydown.enter.prevent="add"
+              @keydown.space.prevent="add"/>
+      </el-tooltip>
+      <el-tooltip effect="dark" :content="$t('refresh')">
+        <Icon class="icon refresh" icon="ion:reload" width="18" height="18"
+              role="button"
+              tabindex="0"
+              :aria-label="$t('refresh')"
+              @click="refresh"
+              @keydown.enter.prevent="refresh"
+              @keydown.space.prevent="refresh"/>
+      </el-tooltip>
     </div>
     <el-scrollbar class="scrollbar" ref="scrollbarRef">
       <div v-infinite-scroll="getAccountList" :infinite-scroll-distance="600" :infinite-scroll-immediate="false">
@@ -24,15 +40,40 @@
           </div>
           <div class="opt">
             <div class="send-email" @click.stop>
-              <Icon @click="setAllReceive(item)" v-if="!item.allReceive" icon="eva:email-fill" width="22" height="22" color="#fccb1a"/>
-              <Icon @click="setAllReceive(item)" v-else icon="flat-color-icons:folder" width="22" height="22" color="#23c4f1" />
+              <el-tooltip effect="dark" :content="item.allReceive ? $t('receiveOwnMail') : $t('receiveAllMail')">
+                <Icon @click="setAllReceive(item)" v-if="!item.allReceive" icon="eva:email-fill" width="22" height="22" color="#fccb1a"
+                      role="button"
+                      tabindex="0"
+                      :aria-label="$t('receiveAllMail')"
+                      @keydown.enter.prevent="setAllReceive(item)"
+                      @keydown.space.prevent="setAllReceive(item)"/>
+                <Icon @click="setAllReceive(item)" v-else icon="flat-color-icons:folder" width="22" height="22" color="#23c4f1"
+                      role="button"
+                      tabindex="0"
+                      :aria-label="$t('receiveOwnMail')"
+                      @keydown.enter.prevent="setAllReceive(item)"
+                      @keydown.space.prevent="setAllReceive(item)"/>
+              </el-tooltip>
             </div>
             <div class="settings" @click.stop>
-              <Icon icon="fluent-color:clipboard-24" width="22" height="22" @click.stop="copyAccount(item.email)"/>
-              <Icon icon="fluent:settings-24-filled" width="21" height="21" color="#909399"
-                    v-if="showNullSetting(item)"/>
+              <el-tooltip effect="dark" :content="$t('copy')">
+                <Icon icon="fluent-color:clipboard-24" width="22" height="22"
+                      role="button"
+                      tabindex="0"
+                      :aria-label="$t('copy')"
+                      @click.stop="copyAccount(item.email)"
+                      @keydown.enter.prevent="copyAccount(item.email)"
+                      @keydown.space.prevent="copyAccount(item.email)"/>
+              </el-tooltip>
+              <el-tooltip v-if="showNullSetting(item)" effect="dark" :content="$t('settings')">
+                <Icon icon="fluent:settings-24-filled" width="21" height="21" color="#909399"
+                      :aria-label="$t('settings')"/>
+              </el-tooltip>
               <el-dropdown v-else trigger="click">
-                <Icon icon="fluent:settings-24-filled" width="21" height="21" color="#909399"/>
+                <Icon icon="fluent:settings-24-filled" width="21" height="21" color="#909399"
+                      role="button"
+                      tabindex="0"
+                      :aria-label="$t('settings')"/>
                 <template #dropdown>
                   <el-dropdown-menu>
                     <el-dropdown-item v-if="hasPerm('account:set-avatar')" @click="openSetAvatar(item)">{{ $t('setAvatar') }}</el-dropdown-item>
@@ -89,13 +130,14 @@
     </el-scrollbar>
     <el-dialog v-model="showAdd" :title="$t('addAccount')">
       <div class="container">
-        <el-input v-model="addForm.email" ref="addRef" type="text" :placeholder="$t('emailAccount')" autocomplete="off">
+        <el-input v-model="addForm.email" ref="addRef" type="text" :placeholder="$t('emailAccount')" :aria-label="$t('emailAccount')" autocomplete="username">
           <template #append>
             <div @click.stop="openSelect">
               <el-select
                   ref="mySelect"
                   v-model="addForm.suffix"
                   :placeholder="$t('select')"
+                  :aria-label="$t('emailDomain')"
                   class="select"
               >
                 <el-option

@@ -1,5 +1,13 @@
 <template>
-  <div style="padding: 0 15px;cursor: pointer" @click="toggleClick">
+  <div
+      class="hamburger-trigger"
+      role="button"
+      tabindex="0"
+      :aria-label="ariaLabel"
+      @click="toggleClick"
+      @keydown.enter.prevent="toggleClick"
+      @keydown.space.prevent="toggleClick"
+  >
     <svg
       :class="{'is-active':isActive}"
       class="hamburger"
@@ -19,6 +27,10 @@ defineProps({
   isActive: {
     type: Boolean,
     default: false
+  },
+  ariaLabel: {
+    type: String,
+    default: ''
   }
 })
 
@@ -29,6 +41,11 @@ const toggleClick = () => {
 </script>
 
 <style scoped>
+.hamburger-trigger {
+  padding: 0 15px;
+  cursor: pointer;
+}
+
 .hamburger {
   display: inline-block;
   vertical-align: middle;

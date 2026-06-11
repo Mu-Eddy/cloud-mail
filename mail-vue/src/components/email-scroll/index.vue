@@ -20,7 +20,7 @@
                 @keydown.enter.prevent="refresh"
                 @keydown.space.prevent="refresh"/>
         </el-tooltip>
-        <el-tooltip v-if="getSelectedMailsIds().length > 0" v-perm="'email:delete'" effect="dark" :content="$t('delete')">
+        <el-tooltip v-if="getSelectedMailsIds().length > 0 && hasPerm('email:delete')" effect="dark" :content="$t('delete')">
           <Icon class="icon delete" icon="uiw:delete" width="16" height="16"
                 role="button"
                 tabindex="0"
@@ -29,7 +29,7 @@
                 @keydown.enter.prevent="handleDelete"
                 @keydown.space.prevent="handleDelete"/>
         </el-tooltip>
-        <el-tooltip v-if="getSelectedMailsIds().length > 0 && showUnread" v-perm="'email:delete'" effect="dark" :content="$t('markAsRead')">
+        <el-tooltip v-if="getSelectedMailsIds().length > 0 && showUnread && hasPerm('email:delete')" effect="dark" :content="$t('markAsRead')">
           <Icon class="icon delete" icon="fluent:mail-read-20-regular" width="21" height="21"
                 role="button"
                 tabindex="0"
@@ -273,6 +273,7 @@ import {useI18n} from "vue-i18n";
 import {EmailUnreadEnum} from "@/enums/email-enum.js";
 import { UseVirtualList } from '@vueuse/components'
 import { useScroll } from '@vueuse/core'
+import {hasPerm} from "@/perm/perm.js";
 
 const props = defineProps({
   getEmailList: Function,

@@ -1,26 +1,62 @@
 <template>
   <div class="header" :class="!hasPerm('email:send') ? 'not-send' : ''">
     <div class="header-btn">
-      <hanburger @click="changeAside"></hanburger>
+      <hanburger :aria-label="$t('mainMenu')" @toggleClick="changeAside"></hanburger>
       <span class="breadcrumb-item">{{ $t(route.meta.title) }}</span>
     </div>
-    <div v-perm="'email:send'" class="writer-box" @click="openSend">
-      <div class="writer">
-        <Icon icon="material-symbols:edit-outline-sharp" width="22" height="22"/>
+    <el-tooltip v-if="hasPerm('email:send')" effect="dark" :content="$t('composeEmail')">
+      <div
+          class="writer-box"
+          role="button"
+          tabindex="0"
+          :aria-label="$t('composeEmail')"
+          @click="openSend"
+          @keydown.enter.prevent="openSend"
+          @keydown.space.prevent="openSend"
+      >
+        <div class="writer">
+          <Icon icon="material-symbols:edit-outline-sharp" width="22" height="22"/>
+        </div>
       </div>
-    </div>
+    </el-tooltip>
     <div class="toolbar">
-      <div v-if="uiStore.dark" class="sun-icon icon-item" @click="openDark($event)">
-        <Icon icon="mingcute:sun-fill"/>
-      </div>
-      <div v-else class="dark-icon icon-item" @click="openDark($event)">
-        <Icon icon="solar:moon-linear"/>
-      </div>
-      <div class="notice icon-item" @click="openNotice">
-        <Icon icon="streamline-plump:announcement-megaphone"/>
-      </div>
+      <el-tooltip effect="dark" :content="uiStore.dark ? $t('toggleLightMode') : $t('toggleDarkMode')">
+        <div
+            :class="[uiStore.dark ? 'sun-icon' : 'dark-icon', 'icon-item']"
+            role="button"
+            tabindex="0"
+            :aria-label="uiStore.dark ? $t('toggleLightMode') : $t('toggleDarkMode')"
+            @click="openDark($event)"
+            @keydown.enter.prevent="openDark"
+            @keydown.space.prevent="openDark"
+        >
+          <Icon v-if="uiStore.dark" icon="mingcute:sun-fill"/>
+          <Icon v-else icon="solar:moon-linear"/>
+        </div>
+      </el-tooltip>
+      <el-tooltip effect="dark" :content="$t('openNotice')">
+        <div
+            class="notice icon-item"
+            role="button"
+            tabindex="0"
+            :aria-label="$t('openNotice')"
+            @click="openNotice"
+            @keydown.enter.prevent="openNotice"
+            @keydown.space.prevent="openNotice"
+        >
+          <Icon icon="streamline-plump:announcement-megaphone"/>
+        </div>
+      </el-tooltip>
       <el-dropdown ref="userinfoRef" @visible-change="e => userInfoShow = e" :teleported="false" popper-class="detail-dropdown">
-        <div class="avatar" @click="userInfoHide" >
+        <div
+            class="avatar"
+            role="button"
+            tabindex="0"
+            :aria-label="$t('userMenu')"
+            @click="userInfoHide"
+            @keydown.enter.prevent="userInfoHide"
+            @keydown.space.prevent="userInfoHide"
+        >
           <div class="avatar-text">
             <div>{{ formatName(userStore.user.email) }}</div>
           </div>
@@ -191,7 +227,7 @@ function openNotice() {
   uiStore.showNotice()
 }
 
-function openDark(e) {
+function openDark(e = null) {
 
   const nextIsDark = !uiStore.dark
   const root = document.documentElement
@@ -201,8 +237,8 @@ function openDark(e) {
     return
   }
 
-  const x = e.clientX
-  const y = e.clientY
+  const x = typeof e?.clientX === 'number' ? e.clientX : window.innerWidth / 2
+  const y = typeof e?.clientY === 'number' ? e.clientY : 32
 
   const maxX = Math.max(x, window.innerWidth - x)
   const maxY = Math.max(y, window.innerHeight - y)

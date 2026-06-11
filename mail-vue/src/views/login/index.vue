@@ -13,6 +13,11 @@
         <span class="form-title">{{ settingStore.settings.title }}</span>
         <span class="form-desc" v-if="show === 'login'">{{ $t('loginTitle') }}</span>
         <span class="form-desc" v-else>{{ $t('regTitle') }}</span>
+        <div class="trust-strip">
+          <span><Icon icon="mingcute:check-circle-fill" width="14" height="14" aria-hidden="true"/>{{ $t('loginTrustDomain') }}</span>
+          <span><Icon icon="mingcute:check-circle-fill" width="14" height="14" aria-hidden="true"/>{{ $t('loginTrustEdge') }}</span>
+          <span><Icon icon="mingcute:check-circle-fill" width="14" height="14" aria-hidden="true"/>{{ $t('loginTrustEcosystem') }}</span>
+        </div>
         <div v-show="show === 'login'">
           <el-input :class="!hideLoginDomain ? 'email-input' : ''" v-model="form.email"
                     type="text" :placeholder="$t('emailAccount')" :aria-label="$t('emailAccount')" autocomplete="username">
@@ -656,6 +661,27 @@ function submitRegister() {
   .form-title {
     font-weight: bold;
     font-size: 22px !important;
+  }
+
+  .trust-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+    color: var(--regular-text-color);
+    font-size: 12px;
+
+    span {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      line-height: 18px;
+    }
+
+    svg {
+      flex-shrink: 0;
+      color: var(--el-color-primary);
+    }
   }
 
   .switch {
